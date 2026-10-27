@@ -91,25 +91,18 @@
             --alto-sobre: auto;
         }
 
-        /* FIX: Previene el rebote elástico de Safari iOS en toda la página */
+        /* Estado inicial del sobre */
         html.sobre-activo {
-            overflow: hidden !important;
-            height: 100% !important;
+            overflow-x: hidden;
         }
 
         body.sobre-activo {
-            margin: 0 !important;
-            min-height: 100vh !important;
-            /* FIX iOS: 100vh no respeta la barra de navegación de Safari */
-            min-height: 100dvh !important;
-            min-height: -webkit-fill-available !important;
-            background: var(--color-fondo) !important;
-            font-family: var(--fuente-secundaria) !important;
-            overflow: hidden !important;
-            /* Bloquea el scroll de la ventana principal */
-            /* FIX: Previene el zoom con doble tap en móviles */
-            touch-action: manipulation !important;
-            -webkit-text-size-adjust: 100% !important;
+            margin: 0;
+            min-height: 100vh;
+            min-height: 100dvh;
+            background: var(--color-fondo);
+            font-family: var(--fuente-secundaria);
+            -webkit-text-size-adjust: 100%;
         }
 
         /* CHECKBOX HACK */
@@ -143,13 +136,14 @@
             -webkit-overflow-scrolling: touch;
         }
 
-        /* Transición de Salida (Ver más detalles) */
-        #ver-detalles:checked~#intro-overlay {
-            opacity: 0;
-            transform: scale(1.15);
-            pointer-events: none;
-            visibility: hidden;
-            transition: opacity 2.2s cubic-bezier(0.25, 1, 0.5, 1), transform 2.2s cubic-bezier(0.25, 1, 0.5, 1), visibility 0s 2.2s;
+        /* Transición de Salida (Ver más detalles o al hacer scroll) */
+        #ver-detalles:checked~#intro-overlay,
+        #intro-overlay.oculto {
+            opacity: 0 !important;
+            transform: scale(1.08) !important;
+            pointer-events: none !important;
+            visibility: hidden !important;
+            transition: opacity 1s cubic-bezier(0.25, 1, 0.5, 1), transform 1s cubic-bezier(0.25, 1, 0.5, 1), visibility 0s 1s !important;
         }
 
         /* Textos Exteriores */
@@ -452,7 +446,7 @@
         .foto {
             position: absolute;
             width: var(--ancho-foto);
-            height: auto;
+            height: 175px;
             top: var(--posicion-arriba-foto);
             left: var(--posicion-izquierda-foto);
             margin-left: var(--margen-izquierdo-foto);
@@ -460,7 +454,9 @@
             transform: rotate(var(--rotacion-foto)) translateY(50px);
             opacity: 0;
             pointer-events: none;
-            object-fit: contain;
+            object-fit: cover;
+            border-radius: 6px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
             transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.6s ease;
         }
 
@@ -613,24 +609,14 @@
             visibility: hidden;
         }
 
-        /* Contenedor real de la página que aparece después */
+        /* Contenedor real de la página */
         .invitacion-real {
             position: relative;
             width: 100%;
-            background: #fff;
+            background: transparent;
             z-index: 1;
-            visibility: hidden;
-            opacity: 0;
-            height: 0;
-            overflow: hidden;
-            transition: visibility 0s 1s, opacity 1s ease;
-        }
-
-        /* Mostrar la invitación real y permitir scrollear */
-        #ver-detalles:checked~.invitacion-real {
             visibility: visible;
             opacity: 1;
-            height: auto;
+            min-height: 100vh;
             overflow: visible;
-            transition: opacity 1s ease;
         }

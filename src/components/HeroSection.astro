@@ -4,15 +4,9 @@ import { asset } from '../utils/paths';
 ---
 
 <section class="inv-section hero-section fade-in-on-scroll">
-  <!-- Monograma SVG de Iniciales R & R -->
+  <!-- Monograma de Iniciales R & R (Texto con tipografía estilizada Bickham Script) -->
   <div class="monogram-wrapper">
-    <img
-      src={asset("/assets/wp-content/uploads/2026/07/ROXANA-RUBEN-INICIALES.svg")}
-      alt="Iniciales Roxana & Ruben"
-      width="150"
-      height="124"
-      class="monogram-img"
-    />
+    <span class="monogram-text">R &amp; R</span>
   </div>
 
   <!-- Adorno superior -->
@@ -40,6 +34,17 @@ import { asset } from '../utils/paths';
   <!-- Encabezado Principal -->
   <div class="titles-group">
     <span class="sub-heading">¡NOS CASAMOS!</span>
+
+    <!-- Fotografía Principal de los Novios -->
+    <div class="hero-photo-frame">
+      <img
+        src={asset("/img/gabriel-tovar-RmIxQ05GzH0-unsplash.jpg")}
+        alt="Roxana y Ruben"
+        class="hero-photo"
+        loading="eager"
+      />
+    </div>
+
     <h1 class="main-couple-names">Roxana &amp; Ruben</h1>
     <p class="couple-dedication">
       Hoy comenzamos juntos el camino m&aacute;s importante de nuestras vidas.
@@ -49,40 +54,61 @@ import { asset } from '../utils/paths';
 
 <style>
   .hero-section {
-    padding-top: 15px;
+    padding-top: 20px;
     padding-bottom: 20px;
   }
 
   .monogram-wrapper {
-    margin: 0 auto 10px auto;
+    margin: 5px auto 10px auto;
     display: flex;
     justify-content: center;
+    align-items: center;
+    overflow: visible;
   }
 
-  .monogram-img {
-    width: 145px;
-    height: auto;
-    filter: drop-shadow(0 2px 5px rgba(117, 123, 77, 0.25));
+  .monogram-text {
+    font-family: var(--font-script);
+    font-size: 84px;
+    line-height: 1.15;
+    color: var(--color-primary);
+    display: inline-block;
+    padding: 10px 24px 15px 24px;
+    letter-spacing: 4px;
+    font-weight: normal;
+    user-select: none;
+    -webkit-user-select: none;
+    text-shadow: 0 2px 6px rgba(117, 123, 77, 0.25);
   }
 
   .ornament-wrapper {
-    margin: 10px auto 16px auto;
+    margin: 6px auto 16px auto;
     display: flex;
     justify-content: center;
   }
 
   .ornament-img {
-    width: 130px;
+    width: 140px;
     height: auto;
-    opacity: 0.9;
+    opacity: 0.95;
+  }
+
+  .verse-text {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 15px;
+    line-height: 1.7;
+    color: #575756;
+    max-width: 380px;
+    margin: 0 auto;
+    padding: 0 10px;
   }
 
   .verse-reference {
     margin-top: 6px;
-    font-size: 13px;
+    font-size: 13.5px;
     color: var(--color-primary);
     font-style: normal;
-    letter-spacing: 1.5px;
+    letter-spacing: 1.8px;
     text-transform: uppercase;
     font-weight: 600;
   }
@@ -94,34 +120,56 @@ import { asset } from '../utils/paths';
   .sub-heading {
     display: block;
     font-family: var(--font-heading);
-    font-size: 15px;
-    letter-spacing: 3px;
+    font-size: 16px;
+    letter-spacing: 3.5px;
     color: var(--color-primary);
     font-weight: 700;
     margin-bottom: 8px;
   }
 
+  .hero-photo-frame {
+    margin: 16px auto 14px auto;
+    max-width: 330px;
+    width: 86%;
+    border-radius: 170px 170px 24px 24px;
+    overflow: hidden;
+    box-shadow: 0 10px 28px rgba(117, 123, 77, 0.22);
+    border: 3px solid rgba(255, 255, 255, 0.9);
+    background: #e8ebd8;
+  }
+
+  .hero-photo {
+    width: 100%;
+    height: 380px;
+    object-fit: cover;
+    display: block;
+  }
+
   .main-couple-names {
     font-family: var(--font-script);
-    font-size: 54px;
+    font-size: 58px;
     color: var(--color-primary);
     margin: 0 0 10px 0;
     line-height: 1.15;
     font-weight: normal;
+    text-shadow: 0 2px 8px rgba(117, 123, 77, 0.2);
   }
 
   .couple-dedication {
     font-family: var(--font-serif);
     font-size: 15px;
-    color: var(--color-text-muted);
+    color: #575756;
     max-width: 340px;
     margin: 0 auto;
     line-height: 1.6;
   }
 
   @media (min-width: 480px) {
+    .monogram-text {
+      font-size: 96px;
+    }
     .main-couple-names {
-      font-size: 62px;
+      font-size: 68px;
     }
   }
 </style>

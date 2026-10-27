@@ -1,0 +1,90 @@
+---
+// PhotoDuoSection.astro - Dúo de Fotografías Románticas
+import { asset } from '../utils/paths';
+---
+
+<section class="inv-section photo-duo-section fade-in-on-scroll">
+  <div class="photo-duo-grid">
+    <div class="photo-card photo-card-left">
+      <img
+        src={asset("/img/gabriel-tovar-RmIxQ05GzH0-unsplash.jpg")}
+        alt="Roxana y Ruben - Momento 1"
+        class="duo-img"
+        loading="lazy"
+      />
+    </div>
+    <div class="photo-card photo-card-right">
+      <img
+        src={asset("/img/gabriel-tovar-RmIxQ05GzH0-unsplash.jpg")}
+        alt="Roxana y Ruben - Momento 2"
+        class="duo-img"
+        loading="lazy"
+      />
+    </div>
+  </div>
+
+  <p class="photo-duo-quote">
+    &ldquo;Lo que m&aacute;s ilusi&oacute;n me hace del futuro es vivirlo contigo.&rdquo;
+  </p>
+</section>
+
+<style>
+  .photo-duo-section {
+    padding-top: 15px;
+    padding-bottom: 20px;
+  }
+
+  .photo-duo-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    max-width: 420px;
+    margin: 0 auto;
+    padding: 0 10px;
+  }
+
+  .photo-card {
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: 0 6px 20px rgba(117, 123, 77, 0.18);
+    border: 2px solid rgba(255, 255, 255, 0.85);
+    background: #e8ebd8;
+  }
+
+  .photo-card-left {
+    border-radius: 60px 18px 18px 18px;
+  }
+
+  .photo-card-right {
+    border-radius: 18px 60px 18px 18px;
+  }
+
+  .duo-img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.5s ease;
+  }
+
+  .photo-card:hover .duo-img {
+    transform: scale(1.04);
+  }
+
+  .photo-duo-quote {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 15.5px;
+    color: var(--color-primary-dark);
+    margin: 18px auto 0 auto;
+    max-width: 320px;
+    line-height: 1.55;
+  }
+
+  @media (max-width: 360px) {
+    .duo-img {
+      height: 180px;
+    }
+  }
+</style>
+

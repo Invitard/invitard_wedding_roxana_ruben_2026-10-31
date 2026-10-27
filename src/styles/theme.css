@@ -3,16 +3,15 @@
    ========================================================================== */
 
 :root {
-  /* Paleta Verde Olivo Dominante */
+  /* Paleta Verde Olivo */
   --color-primary: #757B4D;
-  --color-primary-dark: #5C6140;
+  --color-primary-dark: #4C522B;
   --color-primary-light: #8E9462;
   --color-gold: #81804C;
-  --color-gold-light: #C4C28D;
+  --color-gold-light: #EAE6BD;
   --color-bg-cream: #FFFFF1;
   --color-text-main: #3C3C3B;
   --color-text-muted: #575756;
-  --color-text-light: #FFFFF1;
   --color-border: rgba(117, 123, 77, 0.25);
 
   --font-script: 'BICK', 'Playfair Display', cursive, serif;
@@ -34,13 +33,13 @@ html {
   -webkit-text-size-adjust: 100%;
 }
 
+/* FONDO GENERAL VERDE DEGRADADO AL HACER SCROLL */
 body {
   margin: 0;
   padding: 0;
-  background-color: var(--color-bg-cream);
-  background-image: url('/assets/wp-content/uploads/2026/05/LAURA-ROLANDO-FONDO-TEXTURA.webp');
-  background-repeat: repeat;
-  background-size: 360px auto;
+  min-height: 100vh;
+  background: linear-gradient(180deg, #3C4222 0%, #4E572E 18%, #66723E 38%, #808D53 58%, #9EAB72 78%, #BDC996 100%);
+  background-attachment: scroll;
   color: var(--color-text-main);
   font-family: var(--font-body);
   font-size: 16px;
@@ -49,30 +48,40 @@ body {
   overflow-x: hidden;
 }
 
-/* Mobile First Wrapper */
+.invitacion-real {
+  min-height: 100vh;
+  background: linear-gradient(180deg, #3C4222 0%, #4E572E 18%, #66723E 38%, #808D53 58%, #9EAB72 78%, #BDC996 100%);
+  background-attachment: scroll;
+}
+
+/* COLUMNA CENTRAL: COLOR CREMA CLARO CON TEXTURA DE PAPEL */
 .invitation-container {
   width: 100%;
   max-width: var(--container-max-w);
   margin: 0 auto;
   min-height: 100vh;
   position: relative;
-  box-shadow: 0 0 45px rgba(0, 0, 0, 0.08);
-  background-color: rgba(255, 255, 241, 0.94);
-  padding: 24px 16px 80px 16px;
+  background-color: #FFFFF1;
+  background-image: url('/invitard_wedding_roxana_ruben_2026-10-31/assets/wp-content/uploads/2026/05/LAURA-ROLANDO-FONDO-TEXTURA.webp');
+  background-repeat: repeat;
+  background-size: 340px auto;
+  box-shadow: 0 0 50px rgba(0, 0, 0, 0.35);
+  color: var(--color-text-main);
+  padding: 24px 16px 0 16px;
   overflow: hidden;
 }
 
-/* Common Section */
+/* Secciones */
 .inv-section {
   position: relative;
   padding: 28px 8px;
   margin: 0 auto;
 }
 
-/* SECCIONES VERDES CON TEXTURA (Diseño Original Elementor) */
+/* SECCIONES VERDES CON TEXTURA DENTRO DE LA COLUMNA CREMA */
 .section-green-textured {
   background-color: var(--color-primary);
-  background-image: url('/assets/wp-content/uploads/2026/05/LAURA-ROLANDO-FONDO-TEXTURA.webp');
+  background-image: url('/invitard_wedding_roxana_ruben_2026-10-31/assets/wp-content/uploads/2026/05/LAURA-ROLANDO-FONDO-TEXTURA.webp');
   background-repeat: repeat;
   background-size: cover;
   background-position: center;
@@ -109,24 +118,24 @@ body {
 /* TIRAS / RIBBONS DECORATIVAS ENTRE SECCIONES */
 .ribbon-deco {
   width: 100%;
-  height: 18px;
-  background-image: url('/assets/wp-content/uploads/2026/07/MICHELLE-MARCO-DECO.webp');
+  height: 20px;
+  background-image: url('/invitard_wedding_roxana_ruben_2026-10-31/assets/wp-content/uploads/2026/07/MICHELLE-MARCO-DECO.webp');
   background-repeat: repeat-x;
   background-size: contain;
   background-position: center;
   margin: 22px auto;
-  opacity: 0.9;
+  opacity: 0.95;
 }
 
 .ribbon-dd {
   width: 100%;
-  height: 18px;
-  background-image: url('/assets/wp-content/uploads/2026/07/MICHELLE-MARCO-dd.webp');
+  height: 20px;
+  background-image: url('/invitard_wedding_roxana_ruben_2026-10-31/assets/wp-content/uploads/2026/07/MICHELLE-MARCO-dd.webp');
   background-repeat: repeat-x;
   background-size: contain;
   background-position: center;
   margin: 22px auto;
-  opacity: 0.9;
+  opacity: 0.95;
 }
 
 /* Dividers */
@@ -169,20 +178,10 @@ body {
 
 .title-caps {
   font-family: var(--font-heading);
-  letter-spacing: 2px;
+  letter-spacing: 2.5px;
   text-transform: uppercase;
   color: var(--color-primary);
-  font-weight: 600;
-}
-
-.title-cortejo {
-  font-family: var(--font-cortejo);
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  color: var(--color-primary);
-  font-size: 18px;
-  font-weight: bold;
-  margin: 0 0 14px 0;
+  font-weight: 700;
 }
 
 .verse-text {
@@ -202,21 +201,21 @@ body {
   align-items: center;
   justify-content: center;
   gap: 8px;
-  padding: 12px 26px;
+  padding: 12px 28px;
   border-radius: 30px;
   background-color: var(--color-bg-cream);
   border: 1.5px solid var(--color-primary);
   color: var(--color-primary);
   font-family: var(--font-heading);
   font-size: 14px;
-  font-weight: 600;
+  font-weight: 700;
   letter-spacing: 1.5px;
   text-transform: uppercase;
   text-decoration: none;
   cursor: pointer;
   transition: all 0.3s ease;
   min-height: 46px;
-  box-shadow: 0 4px 12px rgba(117, 123, 77, 0.15);
+  box-shadow: 0 4px 14px rgba(117, 123, 77, 0.15);
   touch-action: manipulation;
 }
 
@@ -259,12 +258,13 @@ body {
 
 /* Cards Claras */
 .inv-card {
-  background: rgba(255, 255, 255, 0.88);
+  background: rgba(255, 255, 255, 0.94);
   border: 1.5px solid var(--color-border);
   border-radius: 18px;
   padding: 24px 18px;
   margin: 18px auto;
-  box-shadow: 0 4px 18px rgba(117, 123, 77, 0.08);
+  box-shadow: 0 6px 20px rgba(117, 123, 77, 0.08);
+  color: var(--color-text-main);
 }
 
 /* Scroll Animation Base */

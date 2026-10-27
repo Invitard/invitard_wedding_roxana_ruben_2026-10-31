@@ -1,4 +1,5 @@
 Nombres de la pareja : Roxana y Ruben
+Fecha de la boda: Sábado, 02 de Enero de 2027 (02-01-2027)
 Nombres completos de los padres de los novios: 
 -Sonia Santos Quiroz 
 -Raúl Huaman Álvarez
@@ -25,7 +26,7 @@ Elegante - agradecemos evitar prendas de tonos claros como blanco, ivory, beige,
 Peticiones adicionales: 
 -cuenta regresiva
 -botones de redireccion de iglesia y el local a google maps.
--botón de confirmacion de asistencia al numero  +51950375573 
+-botón de confirmacion de asistencia al numero +51 994 816 120 
 Datos bancarios para que los invitados hagan donaciones: 
 -CTA Interbank: 898 3378950904
 (CCI) Interbank: 00389801337895090448

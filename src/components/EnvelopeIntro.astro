@@ -59,8 +59,16 @@ import { asset } from '../utils/paths';
       </div>
     </div>
 
-    <!-- Fotografía dejada en blanco sin imágenes personales según lo indicado -->
-    <div class="foto" id="img-foto" style="display:none;" aria-hidden="true"></div>
+    <!-- Fotografía de los Novios dentro del Sobre -->
+    <img
+      class="foto"
+      id="img-foto"
+      alt="Foto de Roxana y Ruben"
+      width="600"
+      height="800"
+      decoding="async"
+      src={asset("/img/gabriel-tovar-RmIxQ05GzH0-unsplash.jpg")}
+    />
 
     <!-- Flor / Adorno decorativo -->
     <img
@@ -147,51 +155,108 @@ import { asset } from '../utils/paths';
 
   <div class="text-container text-bottom">
     <div class="text-names" id="txt-bottom-names">ROXANA &amp; RUBEN</div>
+    <div class="scroll-hint-direct" id="btn-saltar" style="margin-top: 14px; font-size: 13px; letter-spacing: 1px; color: #757B4D; opacity: 0.85; cursor: pointer; text-decoration: underline; text-underline-offset: 4px;">
+      Desliza o haz clic para ver la invitación ↓
+    </div>
   </div>
 </div>
 
 <script is:inline>
   (function() {
-    // Activa clase sobre-activo para bloquear scroll inicial
-    if (document.documentElement) document.documentElement.classList.add('sobre-activo');
-    if (document.body) document.body.classList.add('sobre-activo');
+    var overlay = document.getElementById('intro-overlay');
+    var abrirSobre = document.getElementById('abrir-sobre');
+    var verDetalles = document.getElementById('ver-detalles');
+    var ctaLabel = document.getElementById('btn-cta');
+    var selloBtn = document.getElementById('sello-btn');
+    var btnSaltar = document.getElementById('btn-saltar');
 
     function removeLoadingScreen() {
       var ls = document.getElementById('loading-screen');
       if (ls) {
         ls.style.opacity = '0';
         setTimeout(function() {
-          if (ls.parentNode) ls.parentNode.removeChild(ls);
+          if (ls && ls.parentNode) ls.parentNode.removeChild(ls);
         }, 600);
       }
     }
 
-    // Remover pantalla de carga
     window.addEventListener('load', removeLoadingScreen);
-    setTimeout(removeLoadingScreen, 1200);
+    setTimeout(removeLoadingScreen, 1000);
 
-    // Manejo de clic en CTA
-    var ctaLabel = document.getElementById('btn-cta');
-    if (ctaLabel) {
-      ctaLabel.addEventListener('click', function() {
-        if (typeof window.iniciarMusicaGlobal === 'function') {
-          window.iniciarMusicaGlobal();
-        }
+    function dismissOverlay() {
+      if (typeof window.iniciarMusicaGlobal === 'function') {
+        window.iniciarMusicaGlobal();
+      }
 
-        document.documentElement.classList.remove('sobre-activo');
-        document.body.classList.remove('sobre-activo');
+      if (abrirSobre) abrirSobre.checked = true;
+      if (verDetalles) verDetalles.checked = true;
 
-        document.documentElement.style.overflow = '';
-        document.body.style.overflow = '';
-        document.body.style.touchAction = '';
-
+      if (overlay) {
+        overlay.classList.add('oculto');
         setTimeout(function() {
-          var intro = document.getElementById('intro-overlay');
-          if (intro) {
-            intro.style.display = 'none';
-          }
-        }, 2200);
+          overlay.style.display = 'none';
+        }, 1100);
+      }
+
+      document.documentElement.classList.remove('sobre-activo');
+      document.body.classList.remove('sobre-activo');
+      document.documentElement.style.overflow = '';
+      document.body.style.overflow = '';
+
+      try {
+        sessionStorage.setItem('invitacion_abierta', 'true');
+      } catch (e) {}
+    }
+
+    // Si ya fue abierta en esta sesión de pestaña, no bloquear en reload
+    try {
+      if (sessionStorage.getItem('invitacion_abierta') === 'true') {
+        dismissOverlay();
+      }
+    } catch (e) {}
+
+    // Clic en Ver más detalles
+    if (ctaLabel) {
+      ctaLabel.addEventListener('click', function(e) {
+        e.preventDefault();
+        dismissOverlay();
       });
+    }
+
+    // Clic en Saltar / Deslizar
+    if (btnSaltar) {
+      btnSaltar.addEventListener('click', function(e) {
+        e.preventDefault();
+        dismissOverlay();
+      });
+    }
+
+    // Scroll o rueda del ratón hacia abajo en el sobre para abrirlo directamente
+    var wheelTriggered = false;
+    if (overlay) {
+      overlay.addEventListener('wheel', function(e) {
+        if (e.deltaY > 15 && !wheelTriggered) {
+          wheelTriggered = true;
+          dismissOverlay();
+        }
+      }, { passive: true });
+
+      var touchStartY = 0;
+      overlay.addEventListener('touchstart', function(e) {
+        if (e.touches && e.touches[0]) {
+          touchStartY = e.touches[0].clientY;
+        }
+      }, { passive: true });
+
+      overlay.addEventListener('touchmove', function(e) {
+        if (e.touches && e.touches[0]) {
+          var deltaY = touchStartY - e.touches[0].clientY;
+          if (deltaY > 30 && !wheelTriggered) {
+            wheelTriggered = true;
+            dismissOverlay();
+          }
+        }
+      }, { passive: true });
     }
   })();
 </script>

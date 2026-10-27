@@ -1,50 +1,52 @@
 ---
-// BlessingSection.astro - Padres y Padrinos
+// BlessingSection.astro - Padres y Padrinos en 2 Columnas Estilizadas
 ---
 
 <section class="inv-section blessing-section fade-in-on-scroll">
-  <!-- Título Padres -->
+  <!-- Título Padres en Tipografía Cursiva Estilizada -->
   <div class="cortejo-header">
-    <h2 class="title-cortejo">Con la bendici&oacute;n de Dios y de nuestros padres</h2>
+    <h2 class="cortejo-script-title">Junto con nuestros padres:</h2>
   </div>
 
-  <!-- Lista Padres -->
-  <div class="cortejo-grid">
-    <div class="cortejo-card">
-      <span class="cortejo-role">Padres de la Novia</span>
-      <p class="cortejo-name">Leonardo Mamani Ticona</p>
-      <p class="cortejo-name">Marcia Mamani Ticona</p>
+  <!-- Nombres de los Padres en 2 Columnas -->
+  <div class="parents-columns-grid">
+    <!-- Columna Izquierda: Sonia y Raúl -->
+    <div class="parents-column">
+      <p class="parent-script-name">Ra&uacute;l Huaman &Aacute;lvarez</p>
+      <p class="parent-script-name">Sonia Santos Quiroz</p>
     </div>
 
-    <div class="cortejo-card">
-      <span class="cortejo-role">Padres del Novio</span>
-      <p class="cortejo-name">Ra&uacute;l Huaman &Aacute;lvarez</p>
-      <p class="cortejo-name">Sonia Santos Quiroz</p>
+    <!-- Columna Derecha: Leonardo y Marcia -->
+    <div class="parents-column">
+      <p class="parent-script-name">Leonardo Mamani Ticona</p>
+      <p class="parent-script-name">Marcia Mamani Ticona</p>
     </div>
   </div>
 
-  <!-- Separador intermedio -->
-  <div class="gold-divider">
+  <!-- Separador dorado sutil -->
+  <div class="gold-divider" style="margin: 24px auto;">
     <span class="gold-divider-dot"></span>
   </div>
 
-  <!-- Título Padrinos -->
+  <!-- Título Padrinos en Tipografía Cursiva Estilizada -->
   <div class="cortejo-header">
-    <h2 class="title-cortejo">Con la gu&iacute;a de nuestros padrinos</h2>
+    <h2 class="cortejo-script-title">Y con la gu&iacute;a de nuestros padrinos:</h2>
   </div>
 
-  <!-- Lista Padrinos -->
-  <div class="cortejo-grid">
-    <div class="cortejo-card">
-      <span class="cortejo-role">Padrinos de Religioso</span>
-      <p class="cortejo-name">Roy Ad&aacute;n Mercado Flores</p>
-      <p class="cortejo-name">Ana Cecilia Tolentino Crist&oacute;bal</p>
+  <!-- Nombres de los Padrinos en 2 Columnas -->
+  <div class="parents-columns-grid">
+    <!-- Columna Izquierda: Padrinos Religioso -->
+    <div class="parents-column">
+      <span class="padrinos-badge">Religioso</span>
+      <p class="parent-script-name">Roy Ad&aacute;n Mercado Flores</p>
+      <p class="parent-script-name">Ana Cecilia Tolentino Crist&oacute;bal</p>
     </div>
 
-    <div class="cortejo-card">
-      <span class="cortejo-role">Padrinos de Civil</span>
-      <p class="cortejo-name">Ernesto Valencia Mamani</p>
-      <p class="cortejo-name">Juana Chambi Condori</p>
+    <!-- Columna Derecha: Padrinos Civil -->
+    <div class="parents-column">
+      <span class="padrinos-badge">Civil</span>
+      <p class="parent-script-name">Ernesto Valencia Mamani</p>
+      <p class="parent-script-name">Juana Chambi Condori</p>
     </div>
   </div>
 </section>
@@ -56,60 +58,77 @@
   }
 
   .cortejo-header {
-    margin-bottom: 15px;
+    margin-bottom: 12px;
   }
 
-  .title-cortejo {
-    font-family: var(--font-cortejo);
-    font-size: 16.5px;
-    letter-spacing: 1.8px;
-    color: var(--color-gold);
-    text-transform: uppercase;
-    font-weight: bold;
+  .cortejo-script-title {
+    font-family: var(--font-script);
+    font-size: 34px;
+    color: var(--color-primary);
     margin: 0 auto;
-    max-width: 380px;
-    line-height: 1.4;
+    line-height: 1.25;
+    font-weight: normal;
+    text-shadow: 0 1px 3px rgba(117, 123, 77, 0.15);
   }
 
-  .cortejo-grid {
+  /* Distribución en 2 columnas estilo invitación clásica */
+  .parents-columns-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px 20px;
+    margin: 16px auto;
+    max-width: 440px;
+    align-items: start;
+    padding: 0 8px;
+  }
+
+  .parents-column {
     display: flex;
     flex-direction: column;
-    gap: 16px;
-    margin: 15px auto;
-    max-width: 400px;
+    justify-content: center;
+    text-align: center;
   }
 
-  .cortejo-card {
-    background: rgba(255, 255, 255, 0.6);
-    border: 1px solid rgba(129, 128, 76, 0.2);
-    border-radius: 12px;
-    padding: 14px 12px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
-  }
-
-  .cortejo-role {
-    display: block;
-    font-family: var(--font-cortejo);
-    font-size: 12.5px;
-    font-weight: bold;
-    text-transform: uppercase;
-    letter-spacing: 1.5px;
-    color: var(--color-primary);
-    margin-bottom: 6px;
-  }
-
-  .cortejo-name {
+  .parent-script-name {
     font-family: var(--font-serif);
-    font-size: 16px;
-    margin: 3px 0;
-    color: var(--color-text-main);
+    font-size: 15.5px;
+    line-height: 1.45;
+    margin: 4px 0;
+    color: #3C3C3B;
     font-weight: 500;
+    letter-spacing: 0.2px;
+    word-break: normal;
   }
 
-  @media (min-width: 420px) {
-    .title-cortejo {
-      font-size: 18px;
+  .padrinos-badge {
+    display: inline-block;
+    font-family: var(--font-heading);
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--color-primary);
+    margin-bottom: 4px;
+    font-weight: 700;
+  }
+
+  @media (max-width: 360px) {
+    .cortejo-script-title {
+      font-size: 28px;
+    }
+    .parent-script-name {
+      font-size: 14px;
+    }
+    .parents-columns-grid {
+      gap: 12px 10px;
+    }
+  }
+
+  @media (min-width: 440px) {
+    .cortejo-script-title {
+      font-size: 38px;
+    }
+    .parent-script-name {
+      font-size: 16.5px;
     }
   }
 </style>
-
