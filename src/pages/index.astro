@@ -1,11 +1,84 @@
 ---
-import Welcome from '../components/Welcome.astro';
+// index.astro - Invitación de Boda Roxana & Ruben
 import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import EnvelopeIntro from '../components/EnvelopeIntro.astro';
+import MusicPlayer from '../components/MusicPlayer.astro';
+import HeroSection from '../components/HeroSection.astro';
+import BlessingSection from '../components/BlessingSection.astro';
+import CountdownSection from '../components/CountdownSection.astro';
+import GuestPassSection from '../components/GuestPassSection.astro';
+import LocationsSection from '../components/LocationsSection.astro';
+import DetailsSection from '../components/DetailsSection.astro';
+import GiftBankSection from '../components/GiftBankSection.astro';
+import RsvpSection from '../components/RsvpSection.astro';
 ---
 
 <Layout>
-	<Welcome />
+  <!-- Sobre 3D Interactivo -->
+  <EnvelopeIntro />
+
+  <!-- Contenido Principal de la Invitación (Mobile First) -->
+  <main class="invitacion-real" id="invitacionMain">
+    <div class="invitation-container">
+      <HeroSection />
+      
+      <!-- Tira decorativa floral -->
+      <div class="ribbon-deco" aria-hidden="true"></div>
+
+      <BlessingSection />
+
+      <!-- Tira decorativa floral -->
+      <div class="ribbon-dd" aria-hidden="true"></div>
+
+      <!-- Sección Verde Olivo Texturizada: Cuenta Regresiva -->
+      <CountdownSection />
+
+      <!-- Tira decorativa floral -->
+      <div class="ribbon-deco" aria-hidden="true"></div>
+
+      <GuestPassSection />
+
+      <!-- Sección Verde Olivo Texturizada: Ubicaciones con Arco Arquitectónico -->
+      <LocationsSection />
+
+      <!-- Tira decorativa floral -->
+      <div class="ribbon-dd" aria-hidden="true"></div>
+
+      <DetailsSection />
+
+      <!-- Sección Verde Olivo Texturizada: Donaciones y Datos Bancarios -->
+      <GiftBankSection />
+
+      <!-- Tira decorativa floral -->
+      <div class="ribbon-deco" aria-hidden="true"></div>
+
+      <!-- Confirmación WhatsApp y Cierre -->
+      <RsvpSection />
+    </div>
+  </main>
+
+  <!-- Reproductor Flotante de Música -->
+  <MusicPlayer />
 </Layout>
+
+<style>
+  /* Refuerzo para visualización de la invitación */
+  .invitacion-real.activa {
+    visibility: visible !important;
+    opacity: 1 !important;
+    height: auto !important;
+    overflow: visible !important;
+  }
+</style>
+
+<script is:inline>
+  document.addEventListener('DOMContentLoaded', function () {
+    var cta = document.getElementById('btn-cta');
+    var main = document.getElementById('invitacionMain');
+    if (cta && main) {
+      cta.addEventListener('click', function () {
+        main.classList.add('activa');
+      });
+    }
+  });
+</script>

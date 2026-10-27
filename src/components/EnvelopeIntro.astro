@@ -1,0 +1,197 @@
+---
+// EnvelopeIntro.astro - 3D Interactive Envelope Overlay
+import { asset } from '../utils/paths';
+---
+
+<!-- PANTALLA DE CARGA -->
+<div id="loading-screen" style="position:fixed;inset:0;background:#FFFFF1;z-index:99999;transition:opacity 0.6s ease;display:flex;align-items:center;justify-content:center;">
+  <div style="font-family:'Cormorant Unicase', serif; color:#757B4D; font-size:20px; letter-spacing:3px; animation: pulseLoading 1.5s infinite ease-in-out; font-weight: 700;">
+    ROXANA &amp; RUBEN
+  </div>
+</div>
+
+<style>
+  @keyframes pulseLoading {
+    0%, 100% { opacity: 0.45; transform: scale(0.98); }
+    50% { opacity: 1; transform: scale(1.02); }
+  }
+</style>
+
+<!-- INPUTS CHECKBOX HACK -->
+<input type="checkbox" id="abrir-sobre" class="toggle-input" aria-hidden="true" />
+<input type="checkbox" id="ver-detalles" class="toggle-input" aria-hidden="true" />
+
+<div id="intro-overlay">
+  <div class="text-container text-top">
+    <div class="text-small" id="txt-top-small">Con mucha alegría queremos compartir <br> una noticia muy especial...</div>
+    <div class="text-big" id="txt-top-big">¡NOS CASAMOS!</div>
+  </div>
+
+  <!-- ESTRUCTURA DEL SOBRE 3D -->
+  <div class="envelope">
+    <!-- Base del sobre: fondo cerrado -->
+    <img
+      fetchpriority="high"
+      class="fondo-base"
+      id="fondo-cerrado"
+      alt="Sobre Cerrado"
+      width="3215"
+      height="2379"
+      decoding="async"
+      src={asset("/assets/wp-content/uploads/2026/07/MIHELLE-Y-JORGE-CARTA-06.webp")}
+    />
+
+    <!-- Contenido deslizante: Nota -->
+    <div class="nota-wrapper">
+      <img
+        class="nota-img"
+        id="img-nota"
+        alt="Nota"
+        width="800"
+        height="800"
+        decoding="async"
+        src={asset("/assets/wp-content/uploads/2026/07/MIHELLE-Y-JORGE-CARTA-09.webp")}
+      />
+      <div class="nota-texto">
+        <div class="txt-titulo" id="txt-nota-titulo">Nuestra Historia</div>
+        <div class="txt-nombre" id="txt-nota-nombre">de amor</div>
+        <div class="txt-personas" id="txt-nota-personas">apenas comienza</div>
+      </div>
+    </div>
+
+    <!-- Fotografía dejada en blanco sin imágenes personales según lo indicado -->
+    <div class="foto" id="img-foto" style="display:none;" aria-hidden="true"></div>
+
+    <!-- Flor / Adorno decorativo -->
+    <img
+      class="adorno"
+      id="img-adorno"
+      alt="Flor Decorativa"
+      width="800"
+      height="800"
+      decoding="async"
+      src={asset("/assets/wp-content/uploads/2026/07/carta-invitacion-NNNN.webp")}
+    />
+
+    <!-- Contenedor del Botón (Carta desplegada) -->
+    <div class="letter">
+      <label for="ver-detalles" class="cta-button" id="btn-cta" aria-label="Ver detalles de la invitación">
+        Ver más<br />detalles
+      </label>
+    </div>
+
+    <!-- Piezas frontales del sobre -->
+    <img
+      class="alas"
+      id="img-alas"
+      alt="Alas del Sobre"
+      width="3215"
+      height="2379"
+      decoding="async"
+      src={asset("/assets/wp-content/uploads/2026/07/MIHELLE-Y-JORGE-CARTA-03.webp")}
+    />
+
+    <img
+      class="tapa-abajo"
+      id="img-tapa-abajo"
+      alt="Tapa Inferior"
+      width="3215"
+      height="2379"
+      decoding="async"
+      src={asset("/assets/wp-content/uploads/2026/07/MIHELLE-Y-JORGE-CARTA-05.webp")}
+    />
+
+    <!-- Tapa Doble Cara 3D -->
+    <div class="tapa-arriba">
+      <img
+        class="tapa-cara tapa-frente"
+        id="img-tapa-frente"
+        alt="Tapa Frontal"
+        width="3210"
+        height="1583"
+        decoding="async"
+        src={asset("/assets/wp-content/uploads/2026/07/MIHELLE-Y-JORGE-CARTA-04.webp")}
+      />
+      <img
+        class="tapa-cara tapa-atras"
+        id="img-tapa-atras"
+        alt="Tapa Trasera"
+        width="3210"
+        height="1583"
+        decoding="async"
+        src={asset("/assets/wp-content/uploads/2026/07/MIHELLE-Y-JORGE-CARTA-07.webp")}
+      />
+    </div>
+
+    <!-- Sello de cera interactivo -->
+    <label for="abrir-sobre" class="sello" id="sello-btn" aria-label="Abrir invitación">
+      <img
+        id="img-sello"
+        alt="Sello de Cera"
+        width="500"
+        height="500"
+        decoding="async"
+        src={asset("/assets/wp-content/uploads/2026/03/RODRIGO-Y-KIARA-FOTOS-DECORACION-12.webp")}
+      />
+    </label>
+
+    <!-- Indicador de Clic en el Sello -->
+    <div class="sello-hint" aria-hidden="true">
+      <svg width="40" height="40" viewBox="0 0 40 40" style="overflow:visible">
+        <path d="M 30,35 Q 20,20 5,10" fill="none" stroke="currentColor" stroke-width="1.0" stroke-linecap="round" />
+        <polyline points="12,7 5,10 8,17" fill="none" stroke="currentColor" stroke-width="1.0" stroke-linecap="round" stroke-linejoin="round" />
+      </svg>
+      <span class="sello-hint-text" id="txt-sello-hint">Clic en el sello</span>
+    </div>
+  </div>
+
+  <div class="text-container text-bottom">
+    <div class="text-names" id="txt-bottom-names">ROXANA &amp; RUBEN</div>
+  </div>
+</div>
+
+<script is:inline>
+  (function() {
+    // Activa clase sobre-activo para bloquear scroll inicial
+    if (document.documentElement) document.documentElement.classList.add('sobre-activo');
+    if (document.body) document.body.classList.add('sobre-activo');
+
+    function removeLoadingScreen() {
+      var ls = document.getElementById('loading-screen');
+      if (ls) {
+        ls.style.opacity = '0';
+        setTimeout(function() {
+          if (ls.parentNode) ls.parentNode.removeChild(ls);
+        }, 600);
+      }
+    }
+
+    // Remover pantalla de carga
+    window.addEventListener('load', removeLoadingScreen);
+    setTimeout(removeLoadingScreen, 1200);
+
+    // Manejo de clic en CTA
+    var ctaLabel = document.getElementById('btn-cta');
+    if (ctaLabel) {
+      ctaLabel.addEventListener('click', function() {
+        if (typeof window.iniciarMusicaGlobal === 'function') {
+          window.iniciarMusicaGlobal();
+        }
+
+        document.documentElement.classList.remove('sobre-activo');
+        document.body.classList.remove('sobre-activo');
+
+        document.documentElement.style.overflow = '';
+        document.body.style.overflow = '';
+        document.body.style.touchAction = '';
+
+        setTimeout(function() {
+          var intro = document.getElementById('intro-overlay');
+          if (intro) {
+            intro.style.display = 'none';
+          }
+        }, 2200);
+      });
+    }
+  })();
+</script>

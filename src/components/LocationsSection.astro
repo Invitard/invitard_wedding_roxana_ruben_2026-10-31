@@ -1,0 +1,181 @@
+---
+// LocationsSection.astro - Ceremonia Religiosa y Recepción (Diseño Verde Arqueado)
+import { asset } from '../utils/paths';
+---
+
+<section class="section-green-textured arch-top locations-section fade-in-on-scroll">
+  <!-- CEREMONIA RELIGIOSA -->
+  <div class="location-item">
+    <div class="location-icon">
+      <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M3 21h18M5 21V7l7-4 7 4v14M9 21v-5a3 3 0 0 1 6 0v5"></path>
+        <line x1="12" y1="3" x2="12" y2="7"></line>
+        <line x1="10" y1="5" x2="14" y2="5"></line>
+      </svg>
+    </div>
+
+    <h2 class="location-title">Ceremonia Religiosa</h2>
+    <h3 class="location-place">Templo de San Agust&iacute;n</h3>
+    <p class="location-address">
+      (Esquina de la Calle San Agust&iacute;n con Calle Sucre)<br />
+      Cercado, Arequipa
+    </p>
+
+    <div class="location-time">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="10"></circle>
+        <polyline points="12 6 12 12 16 14"></polyline>
+      </svg>
+      <span>11:30 AM</span>
+    </div>
+
+    <div class="location-btn-wrapper">
+      <a
+        href="https://maps.google.com/?q=Templo+de+San+Agust%C3%ADn,+Calle+San+Agust%C3%ADn,+Arequipa"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inv-btn btn-white-contrast"
+      >
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+          <circle cx="12" cy="10" r="3"></circle>
+        </svg>
+        Ver Ubicaci&oacute;n Iglesia
+      </a>
+    </div>
+  </div>
+
+  <!-- Separador blanco sutil -->
+  <div class="white-divider">
+    <span class="white-divider-dot"></span>
+  </div>
+
+  <!-- RECEPCIÓN -->
+  <div class="location-item">
+    <!-- Animación Lottie Brindis -->
+    <div class="lottie-container" id="lottieBrindis" data-anim={asset("/assets/wp-content/uploads/2026/04/BRNDIS-BALNCO.json")}>
+      <div class="lottie-inner" style="width: 78px; height: 78px; margin: 0 auto;"></div>
+    </div>
+
+    <h2 class="location-title">Recepci&oacute;n</h2>
+    <h3 class="location-place">&ldquo;Hacienda Dorada&rdquo;</h3>
+    <p class="location-address">
+      Av. Alcides Carri&oacute;n Nro 107<br />
+      Distrito Socabaya, Arequipa
+    </p>
+
+    <div class="location-time">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="10"></circle>
+        <polyline points="12 6 12 12 16 14"></polyline>
+      </svg>
+      <span>01:00 PM</span>
+    </div>
+
+    <div class="location-btn-wrapper">
+      <a
+        href="https://maps.google.com/?q=Hacienda+Dorada,+Av.+Alcides+Carri%C3%B3n+107,+Socabaya,+Arequipa"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inv-btn btn-white-contrast"
+      >
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+          <circle cx="12" cy="10" r="3"></circle>
+        </svg>
+        Ver Ubicaci&oacute;n Local
+      </a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .locations-section {
+    max-width: 440px;
+    margin: 25px auto;
+  }
+
+  .location-item {
+    padding: 10px 10px;
+  }
+
+  .location-icon {
+    margin-bottom: 6px;
+  }
+
+  .location-title {
+    font-family: var(--font-heading);
+    font-size: 21px;
+    letter-spacing: 2.5px;
+    color: #FFFFF1;
+    margin: 0 0 6px 0;
+    text-transform: uppercase;
+  }
+
+  .location-place {
+    font-family: var(--font-script);
+    font-size: 36px;
+    color: #FFFFFF;
+    margin: 4px 0 8px 0;
+    font-weight: normal;
+    line-height: 1.2;
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.18);
+  }
+
+  .location-address {
+    font-family: var(--font-serif);
+    font-size: 14.5px;
+    color: #FFFFF1;
+    line-height: 1.55;
+    margin: 0 0 14px 0;
+    opacity: 0.95;
+  }
+
+  .location-time {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: var(--font-heading);
+    font-size: 14px;
+    letter-spacing: 1.5px;
+    color: #FFFFFF;
+    font-weight: 600;
+    margin-bottom: 18px;
+    background: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    padding: 6px 18px;
+    border-radius: 20px;
+  }
+
+  .location-btn-wrapper {
+    margin-top: 4px;
+  }
+
+  .white-divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 32px auto;
+    width: 80%;
+  }
+
+  .white-divider::before,
+  .white-divider::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.5));
+  }
+
+  .white-divider::after {
+    background: linear-gradient(to left, transparent, rgba(255, 255, 255, 0.5));
+  }
+
+  .white-divider-dot {
+    width: 6px;
+    height: 6px;
+    margin: 0 10px;
+    border-radius: 50%;
+    background-color: #FFFFFF;
+  }
+</style>

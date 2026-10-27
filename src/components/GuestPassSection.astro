@@ -1,0 +1,111 @@
+---
+// GuestPassSection.astro - Personalización Dinámica de Invitados y Pases
+---
+
+<section class="inv-section guest-section fade-in-on-scroll">
+  <div class="guest-card">
+    <span class="guest-badge">INVITACI&Oacute;N</span>
+    <h3 id="nombreInvitado" class="guest-name">Familia y Amigos</h3>
+    <p id="textoReservado" class="guest-reserved-text">Hemos reservado</p>
+    <div id="pasesInvitado" class="guest-passes">02 pases</div>
+    <span class="guest-note">especialmente para ti</span>
+  </div>
+</section>
+
+<style>
+  .guest-section {
+    padding-top: 15px;
+    padding-bottom: 25px;
+  }
+
+  .guest-card {
+    background: rgba(255, 255, 255, 0.88);
+    border: 1px solid rgba(129, 128, 76, 0.25);
+    border-radius: 16px;
+    padding: 24px 16px;
+    max-width: 380px;
+    margin: 0 auto;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+    position: relative;
+  }
+
+  .guest-badge {
+    display: inline-block;
+    font-family: var(--font-heading);
+    font-size: 11px;
+    letter-spacing: 2.5px;
+    color: var(--color-gold);
+    text-transform: uppercase;
+    border-bottom: 1px solid rgba(129, 128, 76, 0.4);
+    padding-bottom: 4px;
+    margin-bottom: 8px;
+  }
+
+  .guest-name {
+    font-family: var(--font-guest);
+    font-size: 24px;
+    color: var(--color-primary);
+    margin: 8px 0 12px 0;
+    font-weight: 400;
+    line-height: 1.3;
+    letter-spacing: 0.5px;
+  }
+
+  .guest-reserved-text {
+    font-family: var(--font-guest);
+    font-size: 16px;
+    color: var(--color-text-muted);
+    margin: 0 0 8px 0;
+    letter-spacing: 0.8px;
+  }
+
+  .guest-passes {
+    font-family: var(--font-guest);
+    font-size: 26px;
+    color: var(--color-primary);
+    font-weight: 700;
+    margin: 4px 0;
+    letter-spacing: 1px;
+  }
+
+  .guest-note {
+    display: block;
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 13.5px;
+    color: var(--color-gold);
+    margin-top: 8px;
+  }
+</style>
+
+<script is:inline>
+  (function () {
+    try {
+      var params = new URLSearchParams(window.location.search);
+      var invitado = params.get('invitados') || params.get('invitado');
+      var pases = params.get('pases') || params.get('pase');
+
+      if (!invitado && !pases) {
+        invitado = 'Familia_y_Amigos';
+        pases = '02';
+      }
+
+      var elNombre = document.getElementById('nombreInvitado');
+      var elPases = document.getElementById('pasesInvitado');
+
+      if (invitado && elNombre) {
+        var cleanName = decodeURIComponent(invitado.replace(/_/g, ' '));
+        elNombre.textContent = cleanName;
+      }
+
+      if (pases && elPases) {
+        var num = parseInt(pases, 10);
+        var label = isNaN(num) ? pases : (num === 1 ? num + ' pase' : (num < 10 ? '0' + num : num) + ' pases');
+        elPases.textContent = label;
+      }
+    } catch (e) {
+      console.warn('Error al procesar parámetros de invitado:', e);
+    }
+  })();
+</script>
+

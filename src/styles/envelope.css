@@ -1,0 +1,636 @@
+        /* ==========================================================================
+           VARIABLES GLOBALES Y DE DISEÑO
+           ========================================================================== */
+        :root {
+            /* FUENTES */
+            --fuente-secundaria: 'Playfair Display', serif;
+            --fuente-decorativa: 'Cormorant Unicase', serif;
+            --fuente-elegante: 'Playfair Display', serif;
+            --fuente-linea1: 'Pala', sans-serif;
+            --fuente-linea3: 'Cormorant Unicase', serif;
+            --fuente-nota-titulo: 'Playfair Display', serif;
+            --fuente-nota-nombre: 'Playfair Display', serif;
+            --fuente-nota-personas: 'Playfair Display', serif;
+
+            /* COLORES */
+            --color-fondo: #FFFFF1;
+            --color-cafe-principal: #757b4d;
+            --sello-hint-color: #757b4d;
+
+            --color-boton-fondo: #FFFFF1;
+            --color-boton-texto: #3c3c3b;
+            --color-boton-borde: #757b4d;
+            --color-boton-hover: #fceceb;
+
+            --music-btn-bg: rgba(255, 255, 255, 0.4);
+            --music-btn-hover: rgba(255, 255, 255, 0.75);
+            --music-icon-color: #757B4D;
+            --music-wave-color: #757B4D;
+
+            /* ==========================================
+               ## 1. PERSONALIZACIÓN DE LA NOTA BLANCA
+               ========================================== */
+            --ancho-nota: 200px;
+            --posicion-arriba-nota: -80px;
+            --posicion-izquierda-nota: 5px;
+            --rotacion-nota: 0deg;
+
+            /* ==========================================
+               ## 2. PERSONALIZACIÓN DEL TEXTO (EN LA NOTA)
+               ========================================== */
+            --rotacion-texto-nota: -10deg;
+            --posicion-arriba-texto: 2px;
+            --posicion-izquierda-texto: 0px;
+
+            --tamano-titulo: 10px;
+            /* "Nuestra Historia" */
+            --tamano-nombre: 14px;
+            /* "de amor" */
+            --tamano-personas: 10px;
+            /* "apenas comienza" */
+
+            /* ==========================================
+               ## 3. PERSONALIZACIÓN DE LA FOTO
+               ========================================== */
+            --ancho-foto: 190px;
+            --posicion-arriba-foto: -90px;
+            --posicion-izquierda-foto: 55%;
+            --margen-izquierdo-foto: -50px;
+            --rotacion-foto: 0deg;
+
+            /* ==========================================
+               ## 4. PERSONALIZACIÓN DE LA FLOR (ADORNO)
+               ========================================== */
+            --ancho-flor: 140px;
+            --posicion-arriba-flor: -70px;
+            --posicion-derecha-flor: -10px;
+            --rotacion-flor: 0deg;
+
+            /* ==========================================
+               ## 5. PERSONALIZACIÓN DEL BOTÓN (VER MÁS)
+               ========================================== */
+            --ancho-boton: 100px;
+            --posicion-abajo-boton: -100px;
+            --posicion-derecha-boton: -40px;
+
+            --grosor-borde-boton: 3px;
+            --tamano-texto-boton: 11px;
+
+            /* ==========================================
+               ## TAMAÑO DEL SOBRE EN PANTALLA
+               ========================================== */
+            --ancho-sobre: min(360px, 90vw);
+
+            /* ==========================================
+               ## 6. WIDGET DE MÚSICA
+               ========================================== */
+            --music-shadow-color: rgba(0, 0, 0, 0.15);
+            --music-btn-size: 58px;
+            --music-icon-size: 24px;
+            /* Responsive! */
+            --alto-sobre: auto;
+        }
+
+        /* FIX: Previene el rebote elástico de Safari iOS en toda la página */
+        html.sobre-activo {
+            overflow: hidden !important;
+            height: 100% !important;
+        }
+
+        body.sobre-activo {
+            margin: 0 !important;
+            min-height: 100vh !important;
+            /* FIX iOS: 100vh no respeta la barra de navegación de Safari */
+            min-height: 100dvh !important;
+            min-height: -webkit-fill-available !important;
+            background: var(--color-fondo) !important;
+            font-family: var(--fuente-secundaria) !important;
+            overflow: hidden !important;
+            /* Bloquea el scroll de la ventana principal */
+            /* FIX: Previene el zoom con doble tap en móviles */
+            touch-action: manipulation !important;
+            -webkit-text-size-adjust: 100% !important;
+        }
+
+        /* CHECKBOX HACK */
+        .toggle-input {
+            position: absolute;
+            opacity: 0;
+            pointer-events: none;
+            width: 0;
+            height: 0;
+            margin: 0;
+        }
+
+        /* ==========================================================================
+           OVERLAY Y CONTENEDOR PRINCIPAL
+           ========================================================================== */
+        #intro-overlay {
+            position: fixed;
+            inset: 0;
+            background: var(--color-fondo);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            gap: 20px;
+            visibility: visible;
+            will-change: transform, opacity;
+            transition: opacity 2.2s cubic-bezier(0.25, 1, 0.5, 1), transform 2.2s cubic-bezier(0.25, 1, 0.5, 1), visibility 0s;
+            /* FIX iOS: Previene el bounce scroll en el overlay */
+            overscroll-behavior: none;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        /* Transición de Salida (Ver más detalles) */
+        #ver-detalles:checked~#intro-overlay {
+            opacity: 0;
+            transform: scale(1.15);
+            pointer-events: none;
+            visibility: hidden;
+            transition: opacity 2.2s cubic-bezier(0.25, 1, 0.5, 1), transform 2.2s cubic-bezier(0.25, 1, 0.5, 1), visibility 0s 2.2s;
+        }
+
+        /* Textos Exteriores */
+        .text-container {
+            text-align: center;
+            color: var(--color-cafe-principal);
+            font-family: var(--fuente-decorativa);
+            z-index: 50;
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .text-top {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            margin-bottom: 10px;
+        }
+
+        /* LÍNEA 1: "Con mucha alegría queremos compartir..." — fuente independiente */
+        /* Respeta mayúsculas/minúsculas tal como se escriban en "textos.textTopSmall" */
+        .text-small {
+            font-size: 14px;
+            letter-spacing: 1px;
+            font-family: var(--fuente-linea1);
+            color: #666;
+        }
+
+        /* LÍNEA 2: "¡NOS CASAMOS!" — fuente independiente */
+        .text-big {
+            font-size: 32px;
+            font-weight: 300;
+            line-height: 1;
+            font-family: var(--fuente-decorativa);
+        }
+
+        .text-bottom {
+            margin-top: 20px;
+        }
+
+        /* LÍNEA 3: "MICHELLE & JORGE" — fuente independiente */
+        .text-names {
+            font-size: 40px;
+            font-weight: 300;
+            font-family: var(--fuente-linea3);
+        }
+
+        /* Efecto del texto al abrir el sobre */
+        #abrir-sobre:checked~#intro-overlay .text-top {
+            opacity: 0;
+            transform: translateY(-20px);
+            pointer-events: none;
+        }
+
+        /* ==========================================================================
+           ESTRUCTURA DEL SOBRE
+           ========================================================================== */
+        .envelope {
+            position: relative;
+            width: 360px;
+            /* Tamaño fijo en px para mantener todo idéntico */
+            aspect-ratio: 3215 / 2379;
+            perspective: 1500px;
+            user-select: none;
+            -webkit-user-select: none;
+            flex-shrink: 0;
+            transform-origin: center center;
+            /* Escala el sobre y todo su contenido hacia abajo solo en pantallas muy pequeñas */
+            transform: scale(min(1, calc(100vw / 400)));
+        }
+
+        .fondo-base {
+            z-index: 1;
+            pointer-events: none;
+            transition: opacity 0.8s ease;
+        }
+
+        #fondo-cerrado {
+            position: absolute;
+            /* Valores ajustados para centrar y reducir el fondo debido al recorte de la sombra */
+            left: 5.5%;
+            top: 8%;
+            width: 89%;
+            height: 84%;
+            display: block;
+            /* FIX: Asegura que la imagen llene el contenedor sin distorsión */
+            object-fit: cover;
+            border-radius: 2px;
+        }
+
+
+        /* Partes del sobre que se adaptan al tamaño del fondocuadrado */
+        .alas {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 5;
+            pointer-events: none;
+            /* FIX: Asegura renderizado correcto de imágenes sobreposicionadas */
+            object-fit: cover;
+        }
+
+        .tapa-abajo {
+            position: absolute;
+            width: 100%;
+            height: auto;
+            left: 0;
+            bottom: 0;
+            z-index: 6;
+            pointer-events: none;
+        }
+
+        .tapa-arriba {
+            position: absolute;
+            width: 100%;
+            aspect-ratio: 3210 / 1583;
+            left: 0;
+            top: 0;
+            transform-origin: center 11.5%;
+            /* FIX Safari: Requiere prefijo -webkit- para 3D transforms */
+            -webkit-transform-style: preserve-3d;
+            transform-style: preserve-3d;
+            transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1), z-index 0.2s;
+            z-index: 20;
+            pointer-events: none;
+        }
+
+        .tapa-cara {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            /* FIX Safari: Requiere ambos prefijos para backface-visibility */
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+        }
+
+        .tapa-frente {
+            z-index: 2;
+            transform: rotateX(0deg);
+        }
+
+        .tapa-atras {
+            transform: rotateX(180deg);
+        }
+
+        .sello {
+            position: absolute;
+            width: 90px;
+            left: 50%;
+            top: 100px;
+            transform: translateX(-50%);
+            z-index: 30;
+            transition: opacity 0.25s ease;
+            cursor: pointer;
+            /* FIX: Elimina highlight azul en tap de Android/iOS */
+            -webkit-tap-highlight-color: transparent;
+            /* FIX: Previene delay de 300ms en tap móvil */
+            touch-action: manipulation;
+        }
+
+        .sello img {
+            width: 100%;
+            height: auto;
+            animation: pulse 2.5s infinite;
+            /* FIX: Previene que el sello se vea borroso al animar en móvil */
+            -webkit-transform: translateZ(0);
+            transform: translateZ(0);
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.05);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        .sello-hint {
+            position: absolute;
+            top: 175px;
+            left: 235px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            z-index: 35;
+            pointer-events: none;
+            opacity: 0.85;
+            transition: opacity 0.3s ease;
+            animation: float-hint-diag 2.5s ease-in-out infinite;
+            color: var(--sello-hint-color, #777);
+        }
+
+        .sello-hint svg {
+            margin-bottom: 4px;
+            margin-left: -5px;
+        }
+
+        .sello-hint-text {
+            font-family: var(--fuente-elegante);
+            font-size: 14px;
+            font-style: italic;
+            font-weight: 400;
+            letter-spacing: 0.5px;
+            white-space: nowrap;
+        }
+
+        @keyframes float-hint-diag {
+
+            0%,
+            100% {
+                transform: translate(0, 0);
+            }
+
+            50% {
+                transform: translate(-4px, -4px);
+            }
+        }
+
+        /* ==========================================================================
+           CONTENIDOS FLOTANTES (Nota, Foto, Adorno, Carta)
+           ========================================================================== */
+
+        .nota-wrapper {
+            position: absolute;
+            width: var(--ancho-nota);
+            height: auto;
+            top: var(--posicion-arriba-nota);
+            left: var(--posicion-izquierda-nota);
+            z-index: 3;
+            transform: rotate(var(--rotacion-nota)) translateY(50px);
+            opacity: 0;
+            pointer-events: none;
+            transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.6s ease;
+        }
+
+        .nota-img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .nota-texto {
+            position: absolute;
+            top: var(--posicion-arriba-texto);
+            left: var(--posicion-izquierda-texto);
+            width: 100%;
+            height: 100%;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: #222;
+            font-family: var(--fuente-elegante);
+            line-height: 1.1;
+            padding: 10px;
+            transform: rotate(var(--rotacion-texto-nota)) translateX(5px) translateY(-10px);
+            /* Cambia translateX para mover izq/der y translateY para arriba/abajo */
+        }
+
+        /* "Nuestra Historia" — fuente independiente */
+        .txt-titulo {
+            font-size: var(--tamano-titulo);
+            font-style: normal;
+            font-weight: normal;
+            letter-spacing: 1px;
+            margin-bottom: 2px;
+            font-family: var(--fuente-nota-titulo);
+        }
+
+        /* "de amor" — fuente independiente */
+        .txt-nombre {
+            font-size: var(--tamano-nombre);
+            font-weight: normal;
+            font-style: italic;
+            margin-bottom: 2px;
+            color: #000;
+            font-family: var(--fuente-nota-nombre);
+        }
+
+        /* "apenas comienza" — fuente independiente */
+        .txt-personas {
+            font-size: var(--tamano-personas);
+            font-style: normal;
+            margin-top: 2px;
+            letter-spacing: 1px;
+            font-family: var(--fuente-nota-personas);
+        }
+
+        .foto {
+            position: absolute;
+            width: var(--ancho-foto);
+            height: auto;
+            top: var(--posicion-arriba-foto);
+            left: var(--posicion-izquierda-foto);
+            margin-left: var(--margen-izquierdo-foto);
+            z-index: 2;
+            transform: rotate(var(--rotacion-foto)) translateY(50px);
+            opacity: 0;
+            pointer-events: none;
+            object-fit: contain;
+            transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.6s ease;
+        }
+
+        .adorno {
+            position: absolute;
+            width: var(--ancho-flor);
+            height: auto;
+            top: var(--posicion-arriba-flor);
+            right: var(--posicion-derecha-flor);
+            z-index: 4;
+            transform: rotate(var(--rotacion-flor)) translateY(50px);
+            opacity: 0;
+            pointer-events: none;
+            object-fit: contain;
+            transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.6s ease;
+        }
+
+        /* Carta de fondo y Botón CTA */
+        .letter {
+            position: absolute;
+            width: 70%;
+            height: auto;
+            max-height: 80%;
+            bottom: 0;
+            left: 50%;
+            z-index: 4;
+            opacity: 0;
+            transform: translateX(-50%) translateY(0);
+            transition: opacity 0.8s, transform 0.8s;
+            display: flex;
+            justify-content: center;
+        }
+
+        .letter-img-bg {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        #intro-overlay .cta-button {
+            position: absolute;
+            bottom: var(--posicion-abajo-boton);
+            right: var(--posicion-derecha-boton);
+            width: var(--ancho-boton);
+            height: var(--ancho-boton);
+            border-radius: 50%;
+            background-color: var(--color-boton-fondo) !important;
+            border: var(--grosor-borde-boton) solid var(--color-boton-borde) !important;
+            color: var(--color-boton-texto) !important;
+            font-size: var(--tamano-texto-boton);
+            font-weight: normal;
+            font-family: var(--fuente-elegante);
+            letter-spacing: 1px;
+            text-align: center;
+            line-height: 1.2;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 5px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+            animation: flotar 2s ease-in-out infinite;
+            z-index: 10;
+            /* FIX: Elimina highlight en tap de Android/iOS */
+            -webkit-tap-highlight-color: transparent;
+            touch-action: manipulation;
+            /* FIX: Promueve a capa GPU para animación suave en móvil */
+            -webkit-transform: translateZ(0);
+        }
+
+        #intro-overlay .cta-button:hover {
+            background-color: var(--color-boton-hover) !important;
+            transform: scale(1.05);
+            animation: none;
+        }
+
+        /* FIX: Estado activo para feedback táctil en móvil (no hay hover) */
+        #intro-overlay .cta-button:active {
+            background-color: var(--color-boton-hover) !important;
+            transform: scale(0.97);
+        }
+
+        @keyframes flotar {
+            0% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-6px);
+            }
+
+            100% {
+                transform: translateY(0);
+            }
+        }
+
+        /* ==========================================================================
+           ANIMACIONES AL ABRIR EL SOBRE (#abrir-sobre:checked)
+           ========================================================================== */
+
+        #abrir-sobre:checked~#intro-overlay .nota-wrapper {
+            opacity: 1;
+            transform: rotate(var(--rotacion-nota)) translateY(0) scale(1);
+            transition-delay: 0.4s;
+        }
+
+        #abrir-sobre:checked~#intro-overlay .foto {
+            opacity: 1;
+            transform: rotate(var(--rotacion-foto)) translateY(0) scale(1);
+            transition-delay: 0.5s;
+        }
+
+        #abrir-sobre:checked~#intro-overlay .adorno {
+            opacity: 1;
+            transform: rotate(var(--rotacion-flor)) translateY(0) scale(1);
+            transition-delay: 0.6s;
+        }
+
+        /* La carta (solo con el botón) sube y pasa enfrente de todo */
+        #abrir-sobre:checked~#intro-overlay .letter {
+            opacity: 1;
+            transform: translateX(-50%) translateY(-139px);
+            transition-delay: 0.5s;
+            z-index: 15;
+        }
+
+        /* La tapa gira hacia arriba y se queda visible */
+        #abrir-sobre:checked~#intro-overlay .tapa-arriba {
+            transform: rotateX(180deg);
+            z-index: 1;
+        }
+
+        /* El sello desaparece rápidamente con degradado */
+        #abrir-sobre:checked~#intro-overlay .sello {
+            opacity: 0;
+            transform: translateX(-50%);
+            pointer-events: none;
+        }
+
+        #abrir-sobre:checked~#intro-overlay .sello img {
+            animation: none;
+        }
+
+        #abrir-sobre:checked~#intro-overlay .cta-button {
+            animation: none;
+        }
+
+        #abrir-sobre:checked~#intro-overlay .sello-hint {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        /* Contenedor real de la página que aparece después */
+        .invitacion-real {
+            position: relative;
+            width: 100%;
+            background: #fff;
+            z-index: 1;
+            visibility: hidden;
+            opacity: 0;
+            height: 0;
+            overflow: hidden;
+            transition: visibility 0s 1s, opacity 1s ease;
+        }
+
+        /* Mostrar la invitación real y permitir scrollear */
+        #ver-detalles:checked~.invitacion-real {
+            visibility: visible;
+            opacity: 1;
+            height: auto;
+            overflow: visible;
+            transition: opacity 1s ease;
+        }

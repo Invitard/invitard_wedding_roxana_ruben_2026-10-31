@@ -1,0 +1,189 @@
+---
+// CountdownSection.astro - Fecha y Contador Regresivo (Predominio Verde y Textura)
+import { asset } from '../utils/paths';
+---
+
+<section class="section-green-textured countdown-section fade-in-on-scroll">
+  <div class="date-header">
+    <span class="date-day-name">S&Aacute;BADO</span>
+    <h2 class="date-display">31 . 10 . 2026</h2>
+    <span class="countdown-title">FALTAN</span>
+  </div>
+
+  <p class="invitation-intro-text">
+    Tenemos el grato honor de invitarte a este d&iacute;a tan importante de nuestras vidas.
+  </p>
+
+  <!-- Contador -->
+  <div class="countdown-grid" id="weddingCountdown">
+    <div class="countdown-box">
+      <span class="countdown-num" id="cdDays">00</span>
+      <span class="countdown-label">D&Iacute;AS</span>
+    </div>
+    <div class="countdown-box">
+      <span class="countdown-num" id="cdHours">00</span>
+      <span class="countdown-label">HORAS</span>
+    </div>
+    <div class="countdown-box">
+      <span class="countdown-num" id="cdMinutes">00</span>
+      <span class="countdown-label">MIN</span>
+    </div>
+    <div class="countdown-box">
+      <span class="countdown-num" id="cdSeconds">00</span>
+      <span class="countdown-label">SEG</span>
+    </div>
+  </div>
+
+  <!-- Botón Google Calendar -->
+  <div class="calendar-btn-wrapper">
+    <a
+      href="https://www.google.com/calendar/render?action=TEMPLATE&text=BODA+ROXANA+%26+RUBEN&dates=20261031T163000Z/20261031T230000Z&details=Boda+de+Roxana+y+Ruben&location=Templo+de+San+Agust%C3%ADn,+Arequipa"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="inv-btn btn-white-contrast"
+    >
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+        <line x1="16" y1="2" x2="16" y2="6"></line>
+        <line x1="8" y1="2" x2="8" y2="6"></line>
+        <line x1="3" y1="10" x2="21" y2="10"></line>
+      </svg>
+      Agendar Fecha
+    </a>
+  </div>
+</section>
+
+<style>
+  .countdown-section {
+    padding: 38px 16px;
+    margin: 25px auto;
+  }
+
+  .date-day-name {
+    display: block;
+    font-family: var(--font-heading);
+    font-size: 14.5px;
+    letter-spacing: 3.5px;
+    color: #FFFFF1;
+    font-weight: 600;
+    opacity: 0.95;
+  }
+
+  .date-display {
+    font-family: var(--font-heading);
+    font-size: 34px;
+    letter-spacing: 4px;
+    color: #FFFFFF;
+    margin: 6px 0 10px 0;
+    font-weight: 700;
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  }
+
+  .countdown-title {
+    display: block;
+    font-family: var(--font-heading);
+    font-size: 13px;
+    letter-spacing: 3px;
+    color: #FFFFF1;
+    text-transform: uppercase;
+    opacity: 0.9;
+  }
+
+  .invitation-intro-text {
+    font-family: var(--font-serif);
+    font-size: 15px;
+    color: #FFFFF1;
+    max-width: 320px;
+    margin: 16px auto 26px auto;
+    line-height: 1.6;
+    opacity: 0.95;
+  }
+
+  .countdown-grid {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin: 18px auto 28px auto;
+    max-width: 360px;
+  }
+
+  .countdown-box {
+    flex: 1;
+    min-width: 64px;
+    background: rgba(255, 255, 255, 0.16);
+    border: 1.5px solid rgba(255, 255, 255, 0.45);
+    border-radius: 14px;
+    padding: 12px 4px;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    transition: transform 0.2s ease, background 0.2s ease;
+  }
+
+  .countdown-box:hover {
+    transform: translateY(-2px);
+    background: rgba(255, 255, 255, 0.24);
+  }
+
+  .countdown-num {
+    display: block;
+    font-family: var(--font-heading);
+    font-size: 27px;
+    font-weight: 700;
+    color: #FFFFFF;
+    line-height: 1;
+    margin-bottom: 4px;
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.15);
+  }
+
+  .countdown-label {
+    display: block;
+    font-family: var(--font-heading);
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    color: #FFFFF1;
+    opacity: 0.9;
+  }
+
+  .calendar-btn-wrapper {
+    margin-top: 10px;
+  }
+</style>
+
+<script is:inline>
+  (function () {
+    // 31 de Octubre de 2026 11:30:00 UTC-5 (Arequipa, Perú)
+    var targetTimestamp = new Date('2026-10-31T11:30:00-05:00').getTime();
+
+    var daysEl = document.getElementById('cdDays');
+    var hoursEl = document.getElementById('cdHours');
+    var minutesEl = document.getElementById('cdMinutes');
+    var secondsEl = document.getElementById('cdSeconds');
+
+    function updateCountdown() {
+      var now = new Date().getTime();
+      var diff = targetTimestamp - now;
+
+      if (diff <= 0) {
+        if (daysEl) daysEl.textContent = '00';
+        if (hoursEl) hoursEl.textContent = '00';
+        if (minutesEl) minutesEl.textContent = '00';
+        if (secondsEl) secondsEl.textContent = '00';
+        return;
+      }
+
+      var days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      var hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      var minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+      var seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+      if (daysEl) daysEl.textContent = String(days);
+      if (hoursEl) hoursEl.textContent = String(hours).padStart(2, '0');
+      if (minutesEl) minutesEl.textContent = String(minutes).padStart(2, '0');
+      if (secondsEl) secondsEl.textContent = String(seconds).padStart(2, '0');
+    }
+
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+  })();
+</script>

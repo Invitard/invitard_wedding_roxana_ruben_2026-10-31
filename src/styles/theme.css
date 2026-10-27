@@ -1,0 +1,280 @@
+/* ==========================================================================
+   THEME & MOBILE FIRST CORE STYLES - ROXANA & RUBEN
+   ========================================================================== */
+
+:root {
+  /* Paleta Verde Olivo Dominante */
+  --color-primary: #757B4D;
+  --color-primary-dark: #5C6140;
+  --color-primary-light: #8E9462;
+  --color-gold: #81804C;
+  --color-gold-light: #C4C28D;
+  --color-bg-cream: #FFFFF1;
+  --color-text-main: #3C3C3B;
+  --color-text-muted: #575756;
+  --color-text-light: #FFFFF1;
+  --color-border: rgba(117, 123, 77, 0.25);
+
+  --font-script: 'BICK', 'Playfair Display', cursive, serif;
+  --font-heading: 'Cormorant Unicase', serif;
+  --font-cortejo: 'NICKEN', sans-serif;
+  --font-serif: 'Playfair Display', serif;
+  --font-guest: 'Aref Ruqaa Ink', serif;
+  --font-body: 'Pala', 'Playfair Display', Georgia, serif;
+
+  --container-max-w: 480px;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--color-bg-cream);
+  background-image: url('/assets/wp-content/uploads/2026/05/LAURA-ROLANDO-FONDO-TEXTURA.webp');
+  background-repeat: repeat;
+  background-size: 360px auto;
+  color: var(--color-text-main);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.6;
+  text-align: center;
+  overflow-x: hidden;
+}
+
+/* Mobile First Wrapper */
+.invitation-container {
+  width: 100%;
+  max-width: var(--container-max-w);
+  margin: 0 auto;
+  min-height: 100vh;
+  position: relative;
+  box-shadow: 0 0 45px rgba(0, 0, 0, 0.08);
+  background-color: rgba(255, 255, 241, 0.94);
+  padding: 24px 16px 80px 16px;
+  overflow: hidden;
+}
+
+/* Common Section */
+.inv-section {
+  position: relative;
+  padding: 28px 8px;
+  margin: 0 auto;
+}
+
+/* SECCIONES VERDES CON TEXTURA (Diseño Original Elementor) */
+.section-green-textured {
+  background-color: var(--color-primary);
+  background-image: url('/assets/wp-content/uploads/2026/05/LAURA-ROLANDO-FONDO-TEXTURA.webp');
+  background-repeat: repeat;
+  background-size: cover;
+  background-position: center;
+  color: #FFFFFF;
+  border-radius: 20px;
+  padding: 34px 18px;
+  margin: 24px auto;
+  box-shadow: 0 8px 24px rgba(117, 123, 77, 0.28);
+  position: relative;
+  max-width: 440px;
+}
+
+.section-green-textured::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: rgba(117, 123, 77, 0.35);
+  pointer-events: none;
+  border-radius: inherit;
+}
+
+.section-green-textured > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Arco Arquitectónico Superior */
+.section-green-textured.arch-top {
+  border-radius: 190px 190px 24px 24px;
+  padding-top: 50px;
+  padding-bottom: 38px;
+}
+
+/* TIRAS / RIBBONS DECORATIVAS ENTRE SECCIONES */
+.ribbon-deco {
+  width: 100%;
+  height: 18px;
+  background-image: url('/assets/wp-content/uploads/2026/07/MICHELLE-MARCO-DECO.webp');
+  background-repeat: repeat-x;
+  background-size: contain;
+  background-position: center;
+  margin: 22px auto;
+  opacity: 0.9;
+}
+
+.ribbon-dd {
+  width: 100%;
+  height: 18px;
+  background-image: url('/assets/wp-content/uploads/2026/07/MICHELLE-MARCO-dd.webp');
+  background-repeat: repeat-x;
+  background-size: contain;
+  background-position: center;
+  margin: 22px auto;
+  opacity: 0.9;
+}
+
+/* Dividers */
+.gold-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 22px auto;
+  width: 100%;
+}
+
+.gold-divider::before,
+.gold-divider::after {
+  content: "";
+  flex: 1;
+  max-width: 75px;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--color-primary));
+}
+
+.gold-divider::after {
+  background: linear-gradient(to left, transparent, var(--color-primary));
+}
+
+.gold-divider-dot {
+  width: 6px;
+  height: 6px;
+  margin: 0 10px;
+  border-radius: 50%;
+  background-color: var(--color-primary);
+}
+
+/* Typography Helpers */
+.title-script {
+  font-family: var(--font-script);
+  font-weight: normal;
+  color: var(--color-primary);
+  line-height: 1.2;
+}
+
+.title-caps {
+  font-family: var(--font-heading);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--color-primary);
+  font-weight: 600;
+}
+
+.title-cortejo {
+  font-family: var(--font-cortejo);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--color-primary);
+  font-size: 18px;
+  font-weight: bold;
+  margin: 0 0 14px 0;
+}
+
+.verse-text {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 14.5px;
+  line-height: 1.7;
+  color: var(--color-text-muted);
+  max-width: 380px;
+  margin: 0 auto;
+  padding: 0 10px;
+}
+
+/* Botones Base */
+.inv-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 26px;
+  border-radius: 30px;
+  background-color: var(--color-bg-cream);
+  border: 1.5px solid var(--color-primary);
+  color: var(--color-primary);
+  font-family: var(--font-heading);
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  min-height: 46px;
+  box-shadow: 0 4px 12px rgba(117, 123, 77, 0.15);
+  touch-action: manipulation;
+}
+
+.inv-btn:hover,
+.inv-btn:active {
+  background-color: var(--color-primary);
+  color: #ffffff;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(117, 123, 77, 0.3);
+}
+
+.inv-btn-primary {
+  background-color: var(--color-primary);
+  color: #ffffff;
+  border-color: var(--color-primary);
+}
+
+.inv-btn-primary:hover,
+.inv-btn-primary:active {
+  background-color: var(--color-primary-dark);
+  color: #ffffff;
+}
+
+/* Botón Blanco de Alto Contraste en Secciones Verdes */
+.btn-white-contrast {
+  background-color: #FFFFFF !important;
+  color: var(--color-primary) !important;
+  border: none !important;
+  font-weight: 700 !important;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.22) !important;
+}
+
+.btn-white-contrast:hover,
+.btn-white-contrast:active {
+  background-color: #FFFFF1 !important;
+  color: var(--color-primary-dark) !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.28) !important;
+}
+
+/* Cards Claras */
+.inv-card {
+  background: rgba(255, 255, 255, 0.88);
+  border: 1.5px solid var(--color-border);
+  border-radius: 18px;
+  padding: 24px 18px;
+  margin: 18px auto;
+  box-shadow: 0 4px 18px rgba(117, 123, 77, 0.08);
+}
+
+/* Scroll Animation Base */
+.fade-in-on-scroll {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.8s cubic-bezier(0.2, 0.8, 0.2, 1), transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.fade-in-on-scroll.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}

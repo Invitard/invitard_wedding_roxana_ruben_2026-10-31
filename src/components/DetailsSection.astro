@@ -1,0 +1,89 @@
+---
+// DetailsSection.astro - Código de Vestimenta y Solo Adultos
+import { asset } from '../utils/paths';
+---
+
+<section class="inv-section details-section fade-in-on-scroll">
+  <!-- CÓDIGO DE VESTIMENTA -->
+  <div class="detail-card">
+    <div class="detail-icon">
+      <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#757B4D" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 2a3 3 0 0 0-3 3c0 1.25.75 2 2 2.5L2 19h20L13 7.5c1.25-.5 2-1.25 2-2.5a3 3 0 0 0-3-3z"></path>
+      </svg>
+    </div>
+
+    <h2 class="detail-title">C&oacute;digo de Vestimenta</h2>
+    <span class="detail-highlight">ELEGANTE</span>
+    <p class="detail-description">
+      Agradecemos evitar prendas de tonos claros como blanco, ivory, beige, crema y derivados; estos tonos han sido reservados para los novios.
+    </p>
+  </div>
+
+  <!-- Separador dorado -->
+  <div class="gold-divider">
+    <span class="gold-divider-dot"></span>
+  </div>
+
+  <!-- SOLO ADULTOS -->
+  <div class="detail-card">
+    <!-- Animación Lottie Niños / Adultos -->
+    <div class="lottie-container" id="lottieAdultos" data-anim={asset("/assets/wp-content/uploads/2026/03/NINOS-VREDE-OLIVO.json")}>
+      <div class="lottie-inner" style="width: 72px; height: 72px; margin: 0 auto;"></div>
+    </div>
+
+    <h2 class="detail-title">Solo Adultos</h2>
+    <p class="detail-description">
+      Apreciamos profundamente a sus peque&ntilde;os; sin embargo, con el deseo de que todos puedan disfrutar de una velada tranquila y especial, este evento ser&aacute; exclusivamente para adultos.
+    </p>
+  </div>
+</section>
+
+<style>
+  .details-section {
+    padding-top: 15px;
+    padding-bottom: 25px;
+  }
+
+  .detail-card {
+    background: rgba(255, 255, 255, 0.92);
+    border: 1.5px solid rgba(117, 123, 77, 0.3);
+    border-radius: 18px;
+    padding: 26px 18px;
+    margin: 15px auto;
+    max-width: 380px;
+    box-shadow: 0 4px 18px rgba(117, 123, 77, 0.08);
+    text-align: center;
+  }
+
+  .detail-icon {
+    margin-bottom: 8px;
+  }
+
+  .detail-title {
+    font-family: var(--font-heading);
+    font-size: 21px;
+    letter-spacing: 2px;
+    color: var(--color-primary);
+    margin: 0 0 8px 0;
+    text-transform: uppercase;
+  }
+
+  .detail-highlight {
+    display: inline-block;
+    font-family: var(--font-heading);
+    font-size: 15px;
+    letter-spacing: 2.5px;
+    color: var(--color-primary);
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+
+  .detail-description {
+    font-family: var(--font-serif);
+    font-size: 14.5px;
+    color: var(--color-text-muted);
+    line-height: 1.6;
+    margin: 0 auto;
+    max-width: 320px;
+  }
+</style>

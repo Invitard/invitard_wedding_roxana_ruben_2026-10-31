@@ -1,0 +1,258 @@
+---
+// GiftBankSection.astro - Datos Bancarios y Regalos (Predominio Verde y Textura)
+import { asset } from '../utils/paths';
+---
+
+<section class="section-green-textured gifts-section fade-in-on-scroll">
+  <!-- Lottie Caja de Regalo -->
+  <div class="lottie-container" id="lottieRegalo" data-anim={asset("/assets/wp-content/uploads/2025/11/Caja-de-regalo-balnco-linea-regular.json")}>
+    <div class="lottie-inner" style="width: 78px; height: 78px; margin: 0 auto;"></div>
+  </div>
+
+  <h2 class="gift-title">Sugerencia de Regalo</h2>
+  <p class="gift-intro">
+    Tu presencia ser&aacute; el regalo m&aacute;s valioso para nosotros. Si deseas tener un detalle con nosotros, ponemos a tu disposici&oacute;n nuestra cuenta bancaria:
+  </p>
+
+  <div class="bank-card-inner">
+    <span class="bank-type">Dep&oacute;sito a Cuenta</span>
+    <h3 class="bank-name">INTERBANK</h3>
+
+    <div class="account-actions">
+      <!-- Botón Cuenta -->
+      <button
+        type="button"
+        class="copy-btn-white"
+        id="btnCopyCuenta"
+        data-copy="8983378950904"
+        aria-label="Copiar número de cuenta Interbank"
+      >
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+          <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+        </svg>
+        <span class="btn-text">Cuenta: 898 3378950904</span>
+      </button>
+
+      <!-- Botón CCI -->
+      <button
+        type="button"
+        class="copy-btn-white"
+        id="btnCopyCci"
+        data-copy="00389801337895090448"
+        aria-label="Copiar código interbancario CCI"
+      >
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+          <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+        </svg>
+        <span class="btn-text">CCI: 00389801337895090448</span>
+      </button>
+    </div>
+
+    <div class="account-owner">
+      <span class="owner-label">A nombre de:</span>
+      <strong class="owner-name">Ruben Andre Huaman Santos</strong>
+    </div>
+  </div>
+</section>
+
+<!-- Toast de Copiado al Portapapeles -->
+<div id="copyToast" class="copy-toast" role="status" aria-live="polite">
+  Texto copiado
+</div>
+
+<style>
+  .gifts-section {
+    padding: 36px 18px;
+    margin: 25px auto;
+  }
+
+  .gift-title {
+    font-family: var(--font-heading);
+    font-size: 22px;
+    letter-spacing: 2px;
+    color: #FFFFFF;
+    margin: 6px 0 10px 0;
+    text-transform: uppercase;
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+  }
+
+  .gift-intro {
+    font-family: var(--font-serif);
+    font-size: 14.5px;
+    color: #FFFFF1;
+    line-height: 1.6;
+    margin: 0 auto 22px auto;
+    max-width: 330px;
+    opacity: 0.95;
+  }
+
+  .bank-card-inner {
+    background: rgba(255, 255, 255, 0.15);
+    border: 1.5px solid rgba(255, 255, 255, 0.4);
+    border-radius: 16px;
+    padding: 20px 14px;
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+  }
+
+  .bank-type {
+    display: block;
+    font-family: var(--font-heading);
+    font-size: 12.5px;
+    letter-spacing: 2px;
+    color: #FFFFF1;
+    text-transform: uppercase;
+    opacity: 0.9;
+  }
+
+  .bank-name {
+    font-family: var(--font-heading);
+    font-size: 24px;
+    letter-spacing: 3.5px;
+    color: #FFFFFF;
+    margin: 4px 0 18px 0;
+    font-weight: 700;
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  }
+
+  .account-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+
+  .copy-btn-white {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background: #FFFFFF;
+    border: none;
+    color: var(--color-primary);
+    border-radius: 28px;
+    padding: 12px 14px;
+    font-family: var(--font-heading);
+    font-size: 13.5px;
+    letter-spacing: 1px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    width: 100%;
+    min-height: 46px;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.16);
+    touch-action: manipulation;
+  }
+
+  .copy-btn-white:hover,
+  .copy-btn-white:active {
+    background: #FFFFF1;
+    color: var(--color-primary-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.24);
+  }
+
+  .account-owner {
+    font-family: var(--font-serif);
+    font-size: 14px;
+    color: #FFFFF1;
+  }
+
+  .owner-label {
+    display: block;
+    margin-bottom: 2px;
+    opacity: 0.9;
+  }
+
+  .owner-name {
+    color: #FFFFFF;
+    font-size: 16px;
+    letter-spacing: 0.5px;
+  }
+
+  /* Toast Notification */
+  .copy-toast {
+    position: fixed;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%) translateY(20px);
+    background-color: rgba(40, 44, 30, 0.95);
+    color: #ffffff;
+    padding: 10px 22px;
+    border-radius: 30px;
+    font-family: sans-serif;
+    font-size: 14px;
+    z-index: 999999;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    white-space: nowrap;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+  }
+
+  .copy-toast.show {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+</style>
+
+<script is:inline>
+  (function () {
+    var toast = document.getElementById('copyToast');
+    var toastTimer = null;
+
+    function showToast(message) {
+      if (!toast) return;
+      toast.textContent = message;
+      toast.classList.add('show');
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(function () {
+        toast.classList.remove('show');
+      }, 2200);
+    }
+
+    function copyToClipboard(text, successMsg) {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(function () {
+          showToast(successMsg);
+        }).catch(function () {
+          fallbackCopy(text, successMsg);
+        });
+      } else {
+        fallbackCopy(text, successMsg);
+      }
+    }
+
+    function fallbackCopy(text, successMsg) {
+      var textarea = document.createElement('textarea');
+      textarea.value = text;
+      textarea.style.position = 'fixed';
+      textarea.style.opacity = '0';
+      document.body.appendChild(textarea);
+      textarea.select();
+      try {
+        document.execCommand('copy');
+        showToast(successMsg);
+      } catch (err) {
+        showToast('No se pudo copiar');
+      }
+      document.body.removeChild(textarea);
+    }
+
+    var btnCuenta = document.getElementById('btnCopyCuenta');
+    if (btnCuenta) {
+      btnCuenta.addEventListener('click', function () {
+        copyToClipboard('8983378950904', '¡Número de cuenta copiado!');
+      });
+    }
+
+    var btnCci = document.getElementById('btnCopyCci');
+    if (btnCci) {
+      btnCci.addEventListener('click', function () {
+        copyToClipboard('00389801337895090448', '¡Código CCI copiado!');
+      });
+    }
+  })();
+</script>

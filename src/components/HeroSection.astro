@@ -1,0 +1,127 @@
+---
+// HeroSection.astro
+import { asset } from '../utils/paths';
+---
+
+<section class="inv-section hero-section fade-in-on-scroll">
+  <!-- Monograma SVG de Iniciales R & R -->
+  <div class="monogram-wrapper">
+    <img
+      src={asset("/assets/wp-content/uploads/2026/07/ROXANA-RUBEN-INICIALES.svg")}
+      alt="Iniciales Roxana & Ruben"
+      width="150"
+      height="124"
+      class="monogram-img"
+    />
+  </div>
+
+  <!-- Adorno superior -->
+  <div class="ornament-wrapper">
+    <img
+      src={asset("/assets/wp-content/uploads/2026/07/MICHELLE-MARCO-DECCC.webp")}
+      alt="Ornamento Floral"
+      width="160"
+      height="44"
+      class="ornament-img"
+    />
+  </div>
+
+  <!-- Versículo Bíblico -->
+  <blockquote class="verse-text">
+    &ldquo;Tres cosas durar&aacute;n para siempre: la fe, la esperanza y el amor; y la mayor de las tres es el amor.&rdquo;
+    <footer class="verse-reference">1 Corintios 13:13</footer>
+  </blockquote>
+
+  <!-- Separador dorado -->
+  <div class="gold-divider">
+    <span class="gold-divider-dot"></span>
+  </div>
+
+  <!-- Encabezado Principal -->
+  <div class="titles-group">
+    <span class="sub-heading">¡NOS CASAMOS!</span>
+    <h1 class="main-couple-names">Roxana &amp; Ruben</h1>
+    <p class="couple-dedication">
+      Hoy comenzamos juntos el camino m&aacute;s importante de nuestras vidas.
+    </p>
+  </div>
+</section>
+
+<style>
+  .hero-section {
+    padding-top: 15px;
+    padding-bottom: 20px;
+  }
+
+  .monogram-wrapper {
+    margin: 0 auto 10px auto;
+    display: flex;
+    justify-content: center;
+  }
+
+  .monogram-img {
+    width: 145px;
+    height: auto;
+    filter: drop-shadow(0 2px 5px rgba(117, 123, 77, 0.25));
+  }
+
+  .ornament-wrapper {
+    margin: 10px auto 16px auto;
+    display: flex;
+    justify-content: center;
+  }
+
+  .ornament-img {
+    width: 130px;
+    height: auto;
+    opacity: 0.9;
+  }
+
+  .verse-reference {
+    margin-top: 6px;
+    font-size: 13px;
+    color: var(--color-primary);
+    font-style: normal;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+
+  .titles-group {
+    margin-top: 15px;
+  }
+
+  .sub-heading {
+    display: block;
+    font-family: var(--font-heading);
+    font-size: 15px;
+    letter-spacing: 3px;
+    color: var(--color-primary);
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+
+  .main-couple-names {
+    font-family: var(--font-script);
+    font-size: 54px;
+    color: var(--color-primary);
+    margin: 0 0 10px 0;
+    line-height: 1.15;
+    font-weight: normal;
+  }
+
+  .couple-dedication {
+    font-family: var(--font-serif);
+    font-size: 15px;
+    color: var(--color-text-muted);
+    max-width: 340px;
+    margin: 0 auto;
+    line-height: 1.6;
+  }
+
+  @media (min-width: 480px) {
+    .main-couple-names {
+      font-size: 62px;
+    }
+  }
+</style>

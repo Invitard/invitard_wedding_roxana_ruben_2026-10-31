@@ -1,0 +1,184 @@
+---
+// MusicPlayer.astro - Floating Background Audio Player
+import { asset } from '../utils/paths';
+---
+
+<div
+  id="musicWidget"
+  class="music-widget"
+  role="button"
+  tabindex="0"
+  aria-label="Control de música"
+  aria-pressed="false"
+>
+  <svg class="music-icon" viewBox="0 0 24 24" aria-hidden="true">
+    <path class="play-path" d="M8 5v14l11-7z"></path>
+  </svg>
+</div>
+
+<audio
+  id="bgAudio"
+  src={asset("/assets/wp-content/uploads/2026/07/heaven-bryan-adams.mp3")}
+  preload="auto"
+  loop
+  playsinline
+></audio>
+
+<style>
+  .music-widget {
+    position: fixed;
+    right: 24px;
+    bottom: 28px;
+    z-index: 9000;
+    display: grid;
+    place-items: center;
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background: rgba(255, 255, 241, 0.88);
+    border: 1.5px solid rgba(117, 123, 77, 0.4);
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.15);
+    cursor: pointer;
+    transition: transform 0.2s ease, background 0.3s ease, border-color 0.3s ease;
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+  }
+
+  .music-widget:hover {
+    background: rgba(255, 255, 241, 0.98);
+    transform: scale(1.05);
+  }
+
+  .music-widget:active {
+    transform: scale(0.94);
+  }
+
+  .music-icon {
+    width: 22px;
+    height: 22px;
+    color: #757B4D;
+    fill: currentColor;
+    transition: transform 0.2s ease;
+  }
+
+  /* Animación de ondas musicales al reproducir */
+  .music-widget.playing::before {
+    content: "";
+    position: absolute;
+    inset: -3px;
+    border-radius: 50%;
+    box-shadow: 0 0 0 2px #757B4D inset;
+    opacity: 0;
+    transform: scale(1);
+    animation: slowWaves 3.2s ease-out infinite;
+    pointer-events: none;
+  }
+
+  @keyframes slowWaves {
+    0% {
+      opacity: 0.45;
+      transform: scale(1);
+    }
+    40% {
+      opacity: 0.3;
+      transform: scale(1.35);
+    }
+    75% {
+      opacity: 0.12;
+      transform: scale(1.65);
+    }
+    100% {
+      opacity: 0;
+      transform: scale(1.95);
+    }
+  }
+
+  /* Safe Area para iPhone con Notch */
+  @supports (padding-bottom: env(safe-area-inset-bottom)) {
+    .music-widget {
+      bottom: calc(24px + env(safe-area-inset-bottom));
+    }
+  }
+</style>
+
+<script is:inline>
+  (function () {
+    var widget = document.getElementById('musicWidget');
+    var audio = document.getElementById('bgAudio');
+    if (!widget || !audio) return;
+
+    var icon = widget.querySelector('.music-icon');
+    var isPlaying = false;
+    var firstPlay = false;
+
+    var ICON_PLAY = '<path d="M8 5v14l11-7z"></path>';
+    var ICON_PAUSE = '<rect x="6" y="5" width="4" height="14"></rect><rect x="14" y="5" width="4" height="14"></rect>';
+
+    function setIcon(playing) {
+      if (icon) {
+        icon.innerHTML = playing ? ICON_PAUSE : ICON_PLAY;
+      }
+      widget.classList.toggle('playing', playing);
+      widget.setAttribute('aria-pressed', playing ? 'true' : 'false');
+    }
+
+    window.iniciarMusicaGlobal = function () {
+      if (firstPlay) return;
+      firstPlay = true;
+      isPlaying = true;
+      setIcon(true);
+
+      audio.currentTime = 0;
+      audio.muted = false;
+
+      var playPromise = audio.play();
+      if (playPromise !== undefined) {
+        playPromise.catch(function (error) {
+          console.warn('Reproducción de audio pospuesta:', error);
+          isPlaying = false;
+          setIcon(false);
+        });
+      }
+    };
+
+    function toggleMusic(e) {
+      if (e) {
+        e.preventDefault();
+        e.stopPropagation();
+      }
+
+      if (!firstPlay) {
+        window.iniciarMusicaGlobal();
+        return;
+      }
+
+      if (isPlaying) {
+        audio.pause();
+        isPlaying = false;
+      } else {
+        audio.muted = false;
+        var p = audio.play();
+        if (p !== undefined) {
+          p.then(function() {
+            isPlaying = true;
+            setIcon(true);
+          }).catch(function() {
+            isPlaying = false;
+            setIcon(false);
+          });
+        }
+      }
+      setIcon(isPlaying);
+    }
+
+    widget.addEventListener('click', toggleMusic);
+    widget.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        toggleMusic();
+      }
+    });
+  })();
+</script>
