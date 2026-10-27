@@ -1,0 +1,311 @@
+---
+// IntroPhotosSection.astro - Carrusel a Pantalla Completa (100vw x 100vh) con Diluido Suave a Blanco
+import { asset } from '../utils/paths';
+
+const samplePhoto = asset("/img/gabriel-tovar-RmIxQ05GzH0-unsplash.jpg");
+
+const slides = [
+  { id: 1, src: samplePhoto, alt: "Roxana y Ruben - Fotografía 1" },
+  { id: 2, src: samplePhoto, alt: "Roxana y Ruben - Fotografía 2" },
+  { id: 3, src: samplePhoto, alt: "Roxana y Ruben - Fotografía 3" }
+];
+---
+
+<section class="fullscreen-carousel-section" id="introPhotosScreen">
+  <!-- Slides a pantalla completa -->
+  <div class="carousel-slides-wrapper" id="fullscreenSlidesWrapper">
+    {slides.map((slide, index) => (
+      <div
+        class={`carousel-slide-item ${index === 0 ? 'active' : ''}`}
+        data-slide-index={index}
+      >
+        <img
+          src={slide.src}
+          alt={slide.alt}
+          class="fullscreen-slide-img"
+          loading={index === 0 ? 'eager' : 'lazy'}
+        />
+      </div>
+    ))}
+  </div>
+
+  <!-- Capa de diluido a blanco / crema que cubre toda la pantalla -->
+  <div class="white-gradient-overlay" aria-hidden="true"></div>
+
+  <!-- Controles sutiles del carrusel: Puntos / Dots -->
+  <div class="carousel-dots-wrapper" id="fullscreenCarouselDots" aria-hidden="true">
+    {slides.map((_, index) => (
+      <span class={`fs-dot ${index === 0 ? 'active' : ''}`} data-dot-idx={index}></span>
+    ))}
+  </div>
+
+  <!-- Indicador sutil inferior: Desliza para poder ver el resto de la invitación -->
+  <div
+    class="scroll-instruction-container"
+    id="btnScrollToRest"
+    role="button"
+    tabindex="0"
+    aria-label="Deslizar para ver el resto de la invitación"
+  >
+    <span class="scroll-instruction-text">
+      Desliza para poder ver el resto de la invitaci&oacute;n
+    </span>
+    <div class="scroll-arrow-icon" aria-hidden="true">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="12" y1="5" x2="12" y2="19"></line>
+        <polyline points="19 12 12 19 5 12"></polyline>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<style>
+  .fullscreen-carousel-section {
+    position: relative;
+    width: 100vw;
+    max-width: 100%;
+    height: 100vh;
+    height: 100dvh;
+    min-height: 100vh;
+    min-height: 100dvh;
+    overflow: hidden;
+    background-color: transparent;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    box-sizing: border-box;
+  }
+
+  .carousel-slides-wrapper {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+  }
+
+  .carousel-slide-item {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 1.4s ease-in-out, visibility 1.4s ease-in-out, transform 7s ease-out;
+    transform: scale(1.06);
+    pointer-events: none;
+  }
+
+  .carousel-slide-item.active {
+    opacity: 1;
+    visibility: visible;
+    transform: scale(1);
+    pointer-events: auto;
+    z-index: 2;
+  }
+
+  .fullscreen-slide-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+  }
+
+  /* Capa de diluido suave y progresivo: del blanco al verde sin líneas duras */
+  .white-gradient-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 3;
+    pointer-events: none;
+    background: linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0) 0%,
+      rgba(255, 255, 255, 0) 42%,
+      rgba(255, 255, 241, 0.18) 58%,
+      rgba(250, 251, 245, 0.42) 72%,
+      rgba(238, 243, 224, 0.68) 84%,
+      rgba(223, 232, 203, 0.88) 93%,
+      rgba(202, 215, 175, 1) 100%
+    );
+  }
+
+  /* Puntos indicadores del carrusel */
+  .carousel-dots-wrapper {
+    position: relative;
+    z-index: 4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 12px;
+  }
+
+  .fs-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.7);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.35);
+    transition: all 0.3s ease;
+    cursor: pointer;
+  }
+
+  .fs-dot.active {
+    background-color: #757B4D;
+    width: 22px;
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+  }
+
+  /* Indicador sutil inferior */
+  .scroll-instruction-container {
+    position: relative;
+    z-index: 5;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    text-align: center;
+    padding: 0 20px 28px 20px;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+    transition: transform 0.25s ease, opacity 0.25s ease;
+  }
+
+  .scroll-instruction-container:hover {
+    transform: translateY(-2px);
+    opacity: 0.95;
+  }
+
+  .scroll-instruction-text {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 15.5px;
+    font-weight: 500;
+    color: #3C4222;
+    letter-spacing: 0.5px;
+    text-shadow: 0 1px 4px rgba(255, 255, 255, 0.85);
+  }
+
+  .scroll-arrow-icon {
+    color: #4C532B;
+    filter: drop-shadow(0 1px 2px rgba(255, 255, 255, 0.85));
+    animation: bounceDownIndicator 2s infinite ease-in-out;
+  }
+
+  @keyframes bounceDownIndicator {
+    0%, 100% {
+      transform: translateY(0);
+      opacity: 0.75;
+    }
+    50% {
+      transform: translateY(8px);
+      opacity: 1;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .scroll-instruction-text {
+      font-size: 14.5px;
+    }
+    .scroll-instruction-container {
+      padding-bottom: 24px;
+    }
+  }
+</style>
+
+<script is:inline>
+  (function() {
+    var slides = document.querySelectorAll('#fullscreenSlidesWrapper .carousel-slide-item');
+    var dots = document.querySelectorAll('#fullscreenCarouselDots .fs-dot');
+    var btnScroll = document.getElementById('btnScrollToRest');
+    var currentIndex = 0;
+    var totalSlides = slides.length;
+    var slideTimer = null;
+
+    if (totalSlides === 0) return;
+
+    function goToSlide(index) {
+      if (index === currentIndex) return;
+      slides[currentIndex].classList.remove('active');
+      dots[currentIndex].classList.remove('active');
+
+      currentIndex = (index + totalSlides) % totalSlides;
+
+      slides[currentIndex].classList.add('active');
+      dots[currentIndex].classList.add('active');
+    }
+
+    function nextSlide() {
+      goToSlide(currentIndex + 1);
+    }
+
+    function startAutoPlay() {
+      stopAutoPlay();
+      slideTimer = setInterval(nextSlide, 4200);
+    }
+
+    function stopAutoPlay() {
+      if (slideTimer) clearInterval(slideTimer);
+    }
+
+    startAutoPlay();
+
+    // Clic en dots
+    dots.forEach(function(dot) {
+      dot.addEventListener('click', function(e) {
+        e.stopPropagation();
+        var targetIdx = parseInt(dot.getAttribute('data-dot-idx') || '0', 10);
+        goToSlide(targetIdx);
+        startAutoPlay();
+      });
+    });
+
+    // Touch Swipe en el carrusel
+    var touchStartX = 0;
+    var touchStartY = 0;
+    var carouselSection = document.getElementById('introPhotosScreen');
+
+    if (carouselSection) {
+      carouselSection.addEventListener('touchstart', function(e) {
+        if (e.touches && e.touches[0]) {
+          touchStartX = e.touches[0].clientX;
+          touchStartY = e.touches[0].clientY;
+        }
+      }, { passive: true });
+
+      carouselSection.addEventListener('touchend', function(e) {
+        if (e.changedTouches && e.changedTouches[0]) {
+          var deltaX = touchStartX - e.changedTouches[0].clientX;
+          var deltaY = touchStartY - e.changedTouches[0].clientY;
+          // Si el movimiento horizontal es mayor que el vertical
+          if (Math.abs(deltaX) > 40 && Math.abs(deltaX) > Math.abs(deltaY)) {
+            if (deltaX > 0) {
+              nextSlide();
+            } else {
+              goToSlide(currentIndex - 1);
+            }
+            startAutoPlay();
+          }
+        }
+      }, { passive: true });
+    }
+
+    // Scroll suave hacia el contenido principal de la invitación
+    if (btnScroll) {
+      btnScroll.addEventListener('click', function() {
+        var content = document.getElementById('invitationContent');
+        if (content) {
+          content.scrollIntoView({ behavior: 'smooth' });
+        } else {
+          window.scrollBy({ top: window.innerHeight * 0.95, behavior: 'smooth' });
+        }
+      });
+    }
+  })();
+</script>

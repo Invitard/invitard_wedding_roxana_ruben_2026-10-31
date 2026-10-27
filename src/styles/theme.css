@@ -33,12 +33,28 @@ html {
   -webkit-text-size-adjust: 100%;
 }
 
-/* FONDO GENERAL VERDE DEGRADADO AL HACER SCROLL */
+/* FONDO GENERAL: TRANSICIÓN SUAVE CONTINUA DEL BLANCO AL VERDE */
 body {
   margin: 0;
   padding: 0;
   min-height: 100vh;
-  background: linear-gradient(180deg, #3C4222 0%, #4E572E 18%, #66723E 38%, #808D53 58%, #9EAB72 78%, #BDC996 100%);
+  background: linear-gradient(
+    180deg,
+    #FFFFFF 0px,
+    #FFFFF1 50vh,
+    #F9FAF4 70vh,
+    #EEF3E2 85vh,
+    #DFE8CB 94vh,
+    #CAD7AF 100vh,
+    #B2C392 112vh,
+    #93A571 130vh,
+    #757B4D 160vh,
+    #5E663B 215vh,
+    #4A512A 280vh,
+    #636D3E 350vh,
+    #839158 430vh,
+    #A7B67C 100%
+  );
   background-attachment: scroll;
   color: var(--color-text-main);
   font-family: var(--font-body);
@@ -50,7 +66,23 @@ body {
 
 .invitacion-real {
   min-height: 100vh;
-  background: linear-gradient(180deg, #3C4222 0%, #4E572E 18%, #66723E 38%, #808D53 58%, #9EAB72 78%, #BDC996 100%);
+  background: linear-gradient(
+    180deg,
+    #FFFFFF 0px,
+    #FFFFF1 50vh,
+    #F9FAF4 70vh,
+    #EEF3E2 85vh,
+    #DFE8CB 94vh,
+    #CAD7AF 100vh,
+    #B2C392 112vh,
+    #93A571 130vh,
+    #757B4D 160vh,
+    #5E663B 215vh,
+    #4A512A 280vh,
+    #636D3E 350vh,
+    #839158 430vh,
+    #A7B67C 100%
+  );
   background-attachment: scroll;
 }
 
@@ -58,23 +90,25 @@ body {
 .invitation-container {
   width: 100%;
   max-width: var(--container-max-w);
-  margin: 0 auto;
+  margin: -16px auto 0 auto;
   min-height: 100vh;
   position: relative;
+  z-index: 10;
+  border-radius: 28px 28px 0 0;
   background-color: #FFFFF1;
   background-image: url('/invitard_wedding_roxana_ruben_2026-10-31/assets/wp-content/uploads/2026/05/LAURA-ROLANDO-FONDO-TEXTURA.webp');
   background-repeat: repeat;
   background-size: 340px auto;
-  box-shadow: 0 0 50px rgba(0, 0, 0, 0.35);
+  box-shadow: 0 0 50px rgba(0, 0, 0, 0.28);
   color: var(--color-text-main);
-  padding: 24px 16px 0 16px;
+  padding: 0;
   overflow: hidden;
 }
 
 /* Secciones */
 .inv-section {
   position: relative;
-  padding: 28px 8px;
+  padding: 28px 16px;
   margin: 0 auto;
 }
 

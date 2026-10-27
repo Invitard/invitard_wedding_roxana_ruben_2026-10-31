@@ -2,6 +2,7 @@
 // index.astro - Invitación de Boda Roxana & Ruben
 import Layout from '../layouts/Layout.astro';
 import EnvelopeIntro from '../components/EnvelopeIntro.astro';
+import IntroPhotosSection from '../components/IntroPhotosSection.astro';
 import MusicPlayer from '../components/MusicPlayer.astro';
 import HeroSection from '../components/HeroSection.astro';
 import BlessingSection from '../components/BlessingSection.astro';
@@ -23,7 +24,11 @@ import FooterSection from '../components/FooterSection.astro';
 
   <!-- Contenido Principal de la Invitación (Mobile First) -->
   <main class="invitacion-real" id="invitacionMain">
-    <div class="invitation-container">
+    <!-- Carrusel de 3 Fotos a Pantalla Completa (100vw x 100vh) fuera de la columna -->
+    <IntroPhotosSection />
+
+    <!-- Columna Central de la Invitación -->
+    <div class="invitation-container" id="invitationContent">
       <HeroSection />
       
       <!-- Tira decorativa floral -->
