@@ -1,42 +1,23 @@
 ---
-// PhotoGallerySection.astro - Dúo de Fotos y Carrusel de Recuerdos
+// PhotoGallerySection.astro - Carrusel de Recuerdos "Nuestra Historia"
 import { asset } from '../utils/paths';
 
-const samplePhoto = asset("/img/gabriel-tovar-RmIxQ05GzH0-unsplash.jpg");
 const galleryItems = [
-  { src: samplePhoto, caption: "Nuestros Momentos 1" },
-  { src: samplePhoto, caption: "Nuestros Momentos 2" },
-  { src: samplePhoto, caption: "Nuestros Momentos 3" },
-  { src: samplePhoto, caption: "Nuestros Momentos 4" },
+  { src: asset("/img/DSC_4538.jpg"), alt: "Roxana & Ruben - Recuerdos 1" },
+  { src: asset("/img/DSC_4580.jpg"), alt: "Roxana & Ruben - Recuerdos 2" },
+  { src: asset("/img/DSC_4590.jpg"), alt: "Roxana & Ruben - Recuerdos 3" },
+  { src: asset("/img/DSC_4630.jpg"), alt: "Roxana & Ruben - Recuerdos 4" },
+  { src: asset("/img/DSC_4646.jpg"), alt: "Roxana & Ruben - Recuerdos 5" },
+  { src: asset("/img/DSC_4741.jpg"), alt: "Roxana & Ruben - Recuerdos 6" },
+  { src: asset("/img/DSC_4775.jpg"), alt: "Roxana & Ruben - Recuerdos 7" },
+  { src: asset("/img/DSC_4779.jpg"), alt: "Roxana & Ruben - Recuerdos 8" },
+  { src: asset("/img/JC7_0460.jpg"), alt: "Roxana & Ruben - Recuerdos 9" },
+  { src: asset("/img/JC7_0468.jpg"), alt: "Roxana & Ruben - Recuerdos 10" },
+  { src: asset("/img/JC7_0509.jpg"), alt: "Roxana & Ruben - Recuerdos 11" },
 ];
 ---
 
 <section class="inv-section photo-gallery-section fade-in-on-scroll">
-  <!-- Dúo de Fotos Superior -->
-  <div class="photo-duo-grid">
-    <div class="photo-card photo-card-arch">
-      <img
-        src={samplePhoto}
-        alt="Recuerdos Roxana y Ruben"
-        class="duo-img"
-        loading="lazy"
-      />
-    </div>
-    <div class="photo-card photo-card-arch">
-      <img
-        src={samplePhoto}
-        alt="Recuerdos Roxana y Ruben"
-        class="duo-img"
-        loading="lazy"
-      />
-    </div>
-  </div>
-
-  <!-- Separador dorado -->
-  <div class="gold-divider" style="margin: 22px auto;">
-    <span class="gold-divider-dot"></span>
-  </div>
-
   <!-- Título del Carrusel / Galería -->
   <div class="gallery-header">
     <span class="gallery-sub">NUESTRA HISTORIA</span>
@@ -56,7 +37,7 @@ const galleryItems = [
         <div class="carousel-slide" data-index={index}>
           <img
             src={item.src}
-            alt={item.caption}
+            alt={item.alt}
             class="carousel-img"
             loading="lazy"
           />
@@ -69,6 +50,11 @@ const galleryItems = [
         <polyline points="9 18 15 12 9 6"></polyline>
       </svg>
     </button>
+  </div>
+
+  <!-- Contador elegante de fotos -->
+  <div class="carousel-counter" id="galleryCounterDisplay">
+    <span id="galleryCurrentIdx">1</span> / {galleryItems.length}
   </div>
 
   <!-- Indicadores de puntos -->
@@ -89,39 +75,8 @@ const galleryItems = [
     padding-bottom: 25px;
   }
 
-  .photo-duo-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 14px;
-    max-width: 420px;
-    margin: 0 auto;
-    padding: 0 10px;
-  }
-
-  .photo-card {
-    overflow: hidden;
-    box-shadow: 0 6px 20px rgba(117, 123, 77, 0.18);
-    border: 2px solid rgba(255, 255, 255, 0.85);
-    background: #e8ebd8;
-  }
-
-  .photo-card-arch {
-    border-radius: 60px 18px 18px 18px;
-  }
-
-  .photo-duo-grid .photo-card:nth-child(2) {
-    border-radius: 18px 60px 18px 18px;
-  }
-
-  .duo-img {
-    width: 100%;
-    height: 220px;
-    object-fit: cover;
-    display: block;
-  }
-
   .gallery-header {
-    margin-bottom: 14px;
+    margin-bottom: 18px;
     text-align: center;
   }
 
@@ -146,7 +101,7 @@ const galleryItems = [
   /* Carousel */
   .carousel-container {
     position: relative;
-    max-width: 380px;
+    max-width: 350px;
     margin: 0 auto;
     padding: 0 10px;
   }
@@ -159,7 +114,7 @@ const galleryItems = [
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
     gap: 14px;
-    border-radius: 20px;
+    border-radius: 24px;
   }
 
   .carousel-track::-webkit-scrollbar {
@@ -169,18 +124,20 @@ const galleryItems = [
   .carousel-slide {
     flex: 0 0 100%;
     scroll-snap-align: center;
-    border-radius: 20px;
+    border-radius: 24px;
     overflow: hidden;
-    box-shadow: 0 8px 24px rgba(117, 123, 77, 0.2);
-    border: 3px solid rgba(255, 255, 255, 0.9);
+    box-shadow: 0 10px 28px rgba(117, 123, 77, 0.22);
+    border: 3px solid rgba(255, 255, 255, 0.92);
     background: #e8ebd8;
   }
 
   .carousel-img {
     width: 100%;
-    height: 380px;
+    height: 480px;
     object-fit: cover;
+    object-position: center;
     display: block;
+    transition: transform 0.4s ease;
   }
 
   .carousel-btn {
@@ -190,7 +147,7 @@ const galleryItems = [
     width: 38px;
     height: 38px;
     border-radius: 50%;
-    background: rgba(255, 255, 255, 0.85);
+    background: rgba(255, 255, 255, 0.88);
     border: 1.5px solid var(--color-primary);
     color: var(--color-primary);
     display: flex;
@@ -215,16 +172,32 @@ const galleryItems = [
     right: 18px;
   }
 
+  .carousel-counter {
+    font-family: var(--font-heading);
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--color-primary);
+    letter-spacing: 2px;
+    text-align: center;
+    margin-top: 12px;
+  }
+
   .carousel-dots {
     display: flex;
     justify-content: center;
-    gap: 8px;
-    margin-top: 14px;
+    align-items: center;
+    gap: 6px;
+    margin-top: 8px;
+    padding: 0 10px;
+    flex-wrap: wrap;
+    max-width: 320px;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   .carousel-dot {
-    width: 8px;
-    height: 8px;
+    width: 6px;
+    height: 6px;
     border-radius: 50%;
     background-color: rgba(117, 123, 77, 0.3);
     transition: all 0.3s ease;
@@ -233,9 +206,9 @@ const galleryItems = [
 
   .carousel-dot.active {
     background-color: var(--color-primary);
-    transform: scale(1.3);
-    width: 18px;
-    border-radius: 10px;
+    transform: scale(1.2);
+    width: 14px;
+    border-radius: 6px;
   }
 
   .gallery-quote {
@@ -250,11 +223,8 @@ const galleryItems = [
   }
 
   @media (max-width: 360px) {
-    .duo-img {
-      height: 180px;
-    }
     .carousel-img {
-      height: 320px;
+      height: 420px;
     }
   }
 </style>
@@ -265,30 +235,80 @@ const galleryItems = [
     var prevBtn = document.getElementById('galleryPrevBtn');
     var nextBtn = document.getElementById('galleryNextBtn');
     var dots = document.querySelectorAll('#galleryDots .carousel-dot');
+    var counterEl = document.getElementById('galleryCurrentIdx');
+    var container = track ? track.closest('.carousel-container') : null;
 
     if (!track) return;
 
+    var slides = track.querySelectorAll('.carousel-slide');
+    var totalSlides = slides.length;
+    var autoPlayTimer = null;
+
     function getSlideWidth() {
       var slide = track.querySelector('.carousel-slide');
-      return slide ? slide.offsetWidth + 14 : 300;
+      return slide ? slide.offsetWidth + 14 : 320;
     }
+
+    function goToSlide(index) {
+      var slideW = getSlideWidth();
+      var targetIndex = (index + totalSlides) % totalSlides;
+      track.scrollTo({ left: targetIndex * slideW, behavior: 'smooth' });
+    }
+
+    function nextSlide() {
+      var slideW = getSlideWidth();
+      var activeIndex = Math.round(track.scrollLeft / slideW);
+      var nextIndex = (activeIndex + 1) % totalSlides;
+      track.scrollTo({ left: nextIndex * slideW, behavior: 'smooth' });
+    }
+
+    function prevSlide() {
+      var slideW = getSlideWidth();
+      var activeIndex = Math.round(track.scrollLeft / slideW);
+      var targetIndex = (activeIndex - 1 + totalSlides) % totalSlides;
+      track.scrollTo({ left: targetIndex * slideW, behavior: 'smooth' });
+    }
+
+    function startAutoPlay() {
+      stopAutoPlay();
+      autoPlayTimer = setInterval(nextSlide, 5000);
+    }
+
+    function stopAutoPlay() {
+      if (autoPlayTimer) {
+        clearInterval(autoPlayTimer);
+        autoPlayTimer = null;
+      }
+    }
+
+    // Iniciar cambio automático cada 5 segundos
+    startAutoPlay();
 
     if (prevBtn) {
       prevBtn.addEventListener('click', function() {
-        track.scrollBy({ left: -getSlideWidth(), behavior: 'smooth' });
+        prevSlide();
+        startAutoPlay();
       });
     }
 
     if (nextBtn) {
       nextBtn.addEventListener('click', function() {
-        track.scrollBy({ left: getSlideWidth(), behavior: 'smooth' });
+        nextSlide();
+        startAutoPlay();
       });
     }
 
-    // Actualizar puntos activos según posición de scroll
+    // Actualizar puntos y contador según posición de scroll
     track.addEventListener('scroll', function() {
       var slideW = getSlideWidth();
       var activeIndex = Math.round(track.scrollLeft / slideW);
+      if (activeIndex < 0) activeIndex = 0;
+      if (activeIndex >= totalSlides) activeIndex = totalSlides - 1;
+
+      if (counterEl) {
+        counterEl.textContent = activeIndex + 1;
+      }
+
       dots.forEach(function(dot, idx) {
         if (idx === activeIndex) {
           dot.classList.add('active');
@@ -301,9 +321,23 @@ const galleryItems = [
     dots.forEach(function(dot) {
       dot.addEventListener('click', function() {
         var idx = parseInt(dot.getAttribute('data-dot') || '0', 10);
-        track.scrollTo({ left: idx * getSlideWidth(), behavior: 'smooth' });
+        goToSlide(idx);
+        startAutoPlay();
       });
     });
+
+    // Pausar al interactuar táctilmente y reiniciar al soltar
+    track.addEventListener('touchstart', function() {
+      stopAutoPlay();
+    }, { passive: true });
+
+    track.addEventListener('touchend', function() {
+      startAutoPlay();
+    }, { passive: true });
+
+    if (container) {
+      container.addEventListener('mouseenter', stopAutoPlay);
+      container.addEventListener('mouseleave', startAutoPlay);
+    }
   })();
 </script>
-
