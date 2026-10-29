@@ -40,19 +40,17 @@ html {
   -webkit-text-size-adjust: 100%;
 }
 
-/* FONDO GENERAL: TRANSICIÓN SUAVE CONTINUA DEL BLANCO AL COLOR PRINCIPAL #4A1221 */
+/* FONDO GENERAL: COLOR PRINCIPAL ROJO/VINO #4A1221 CON SUTIL PROFUNDIDAD */
 body {
   margin: 0;
   padding: 0;
   min-height: 100vh;
-  background: linear-gradient(
+  background-color: #4A1221;
+  background-image: linear-gradient(
     180deg,
-    #FFFFFF 0px,
-    #FFFFF1 45vh,
-    #F6E5E9 65vh,
-    #E8BAC4 80vh,
-    #CB7E90 90vh,
-    #9C3E55 96vh,
+    #300A15 0px,
+    #3B0E1B 35vh,
+    #44111F 70vh,
     #4A1221 100vh,
     #4A1221 100%
   );
@@ -67,14 +65,12 @@ body {
 
 .invitacion-real {
   min-height: 100vh;
-  background: linear-gradient(
+  background-color: #4A1221;
+  background-image: linear-gradient(
     180deg,
-    #FFFFFF 0px,
-    #FFFFF1 45vh,
-    #F6E5E9 65vh,
-    #E8BAC4 80vh,
-    #CB7E90 90vh,
-    #9C3E55 96vh,
+    #300A15 0px,
+    #3B0E1B 35vh,
+    #44111F 70vh,
     #4A1221 100vh,
     #4A1221 100%
   );
@@ -85,7 +81,7 @@ body {
 .invitation-container {
   width: 100%;
   max-width: var(--container-max-w);
-  margin: -16px auto 0 auto;
+  margin: -20px auto 0 auto;
   min-height: 100vh;
   position: relative;
   z-index: 10;
@@ -94,7 +90,7 @@ body {
   background-image: url('/invitard_wedding_roxana_ruben_2026-10-31/assets/wp-content/uploads/2026/05/LAURA-ROLANDO-FONDO-TEXTURA.webp');
   background-repeat: repeat;
   background-size: 340px auto;
-  box-shadow: 0 0 50px rgba(0, 0, 0, 0.28);
+  box-shadow: 0 -8px 35px rgba(0, 0, 0, 0.35), 0 0 50px rgba(0, 0, 0, 0.28);
   color: var(--color-text-main);
   padding: 0;
   overflow: hidden;

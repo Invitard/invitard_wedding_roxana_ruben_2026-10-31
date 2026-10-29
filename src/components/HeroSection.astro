@@ -9,14 +9,14 @@ import { asset } from '../utils/paths';
     <span class="monogram-text">R &amp; R</span>
   </div>
 
-  <!-- Adorno superior -->
+  <!-- Adorno Floral flowers_001.png -->
   <div class="ornament-wrapper">
     <img
-      src={asset("/assets/wp-content/uploads/2026/07/MICHELLE-MARCO-DECCC.webp")}
-      alt="Ornamento Floral"
-      width="160"
-      height="44"
-      class="ornament-img"
+      src={asset("/img/flowers_001.png")}
+      alt="Arreglo Floral"
+      width="100"
+      height="135"
+      class="ornament-floral-img"
     />
   </div>
 
@@ -81,15 +81,20 @@ import { asset } from '../utils/paths';
   }
 
   .ornament-wrapper {
-    margin: 6px auto 16px auto;
+    margin: 4px auto 14px auto;
     display: flex;
     justify-content: center;
+    align-items: center;
   }
 
-  .ornament-img {
-    width: 140px;
+  .ornament-floral-img {
+    width: 95px;
     height: auto;
-    opacity: 0.95;
+    max-height: 125px;
+    object-fit: contain;
+    filter: drop-shadow(0 4px 10px rgba(74, 18, 33, 0.16));
+    opacity: 0.96;
+    transition: transform 0.3s ease;
   }
 
   .verse-text {
