@@ -3,16 +3,23 @@
    ========================================================================== */
 
 :root {
-  /* Paleta Verde Olivo */
-  --color-primary: #757B4D;
-  --color-primary-dark: #4C522B;
-  --color-primary-light: #8E9462;
-  --color-gold: #81804C;
+  /* Color Principal: Borgoña / Vino Tinto */
+  --color-primary: #4A1221;
+  --color-primary-dark: #310813;
+  --color-primary-light: #6E1F35;
+
+  /* Color Secundario: Verde Olivo Claro / Sage */
+  --color-secondary: #8E9462;
+  --color-secondary-light: #A5AC7D;
+  --color-secondary-soft: #E3E8D2;
+  --color-secondary-dark: #636B3B;
+
+  --color-gold: #8E9462;
   --color-gold-light: #EAE6BD;
   --color-bg-cream: #FFFFF1;
   --color-text-main: #3C3C3B;
   --color-text-muted: #575756;
-  --color-border: rgba(117, 123, 77, 0.25);
+  --color-border: rgba(74, 18, 33, 0.18);
 
   --font-script: 'Great Vibes', 'Alex Brush', cursive;
   --font-heading: 'Cormorant Unicase', serif;
@@ -33,7 +40,7 @@ html {
   -webkit-text-size-adjust: 100%;
 }
 
-/* FONDO GENERAL: TRANSICIÓN SUAVE CONTINUA DEL BLANCO AL VERDE */
+/* FONDO GENERAL: TRANSICIÓN SUAVE CONTINUA DEL BLANCO AL VERDE CLARO SECUNDARIO */
 body {
   margin: 0;
   padding: 0;
@@ -42,18 +49,18 @@ body {
     180deg,
     #FFFFFF 0px,
     #FFFFF1 50vh,
-    #F9FAF4 70vh,
-    #EEF3E2 85vh,
-    #DFE8CB 94vh,
-    #CAD7AF 100vh,
-    #B2C392 112vh,
-    #93A571 130vh,
-    #757B4D 160vh,
-    #5E663B 215vh,
-    #4A512A 280vh,
-    #636D3E 350vh,
-    #839158 430vh,
-    #A7B67C 100%
+    #FAFBF6 70vh,
+    #F3F6EC 85vh,
+    #E8EDE0 94vh,
+    #D9E2CE 100vh,
+    #CAD6BC 112vh,
+    #BAC8AA 130vh,
+    #A9B997 160vh,
+    #9BAA86 215vh,
+    #8E9D78 280vh,
+    #98A681 350vh,
+    #A7B591 430vh,
+    #B5C2A0 100%
   );
   background-attachment: scroll;
   color: var(--color-text-main);
@@ -70,18 +77,18 @@ body {
     180deg,
     #FFFFFF 0px,
     #FFFFF1 50vh,
-    #F9FAF4 70vh,
-    #EEF3E2 85vh,
-    #DFE8CB 94vh,
-    #CAD7AF 100vh,
-    #B2C392 112vh,
-    #93A571 130vh,
-    #757B4D 160vh,
-    #5E663B 215vh,
-    #4A512A 280vh,
-    #636D3E 350vh,
-    #839158 430vh,
-    #A7B67C 100%
+    #FAFBF6 70vh,
+    #F3F6EC 85vh,
+    #E8EDE0 94vh,
+    #D9E2CE 100vh,
+    #CAD6BC 112vh,
+    #BAC8AA 130vh,
+    #A9B997 160vh,
+    #9BAA86 215vh,
+    #8E9D78 280vh,
+    #98A681 350vh,
+    #A7B591 430vh,
+    #B5C2A0 100%
   );
   background-attachment: scroll;
 }
@@ -112,7 +119,7 @@ body {
   margin: 0 auto;
 }
 
-/* SECCIONES VERDES CON TEXTURA DENTRO DE LA COLUMNA CREMA */
+/* SECCIONES DESTACADAS CON TEXTURA DENTRO DE LA COLUMNA CREMA */
 .section-green-textured {
   background-color: var(--color-primary);
   background-image: url('/invitard_wedding_roxana_ruben_2026-10-31/assets/wp-content/uploads/2026/05/LAURA-ROLANDO-FONDO-TEXTURA.webp');
@@ -123,16 +130,17 @@ body {
   border-radius: 20px;
   padding: 34px 18px;
   margin: 24px auto;
-  box-shadow: 0 8px 24px rgba(117, 123, 77, 0.28);
+  box-shadow: 0 8px 24px rgba(74, 18, 33, 0.28);
   position: relative;
   max-width: 440px;
+  border: 1px solid rgba(142, 148, 98, 0.22);
 }
 
 .section-green-textured::before {
   content: "";
   position: absolute;
   inset: 0;
-  background-color: rgba(117, 123, 77, 0.35);
+  background-color: rgba(74, 18, 33, 0.32);
   pointer-events: none;
   border-radius: inherit;
 }
@@ -249,7 +257,7 @@ body {
   cursor: pointer;
   transition: all 0.3s ease;
   min-height: 46px;
-  box-shadow: 0 4px 14px rgba(117, 123, 77, 0.15);
+  box-shadow: 0 4px 14px rgba(74, 18, 33, 0.15);
   touch-action: manipulation;
 }
 
@@ -258,7 +266,7 @@ body {
   background-color: var(--color-primary);
   color: #ffffff;
   transform: translateY(-2px);
-  box-shadow: 0 6px 18px rgba(117, 123, 77, 0.3);
+  box-shadow: 0 6px 18px rgba(74, 18, 33, 0.3);
 }
 
 .inv-btn-primary {
@@ -297,7 +305,7 @@ body {
   border-radius: 18px;
   padding: 24px 18px;
   margin: 18px auto;
-  box-shadow: 0 6px 20px rgba(117, 123, 77, 0.08);
+  box-shadow: 0 6px 20px rgba(74, 18, 33, 0.08);
   color: var(--color-text-main);
 }
 

@@ -14,18 +14,18 @@
 
             /* COLORES */
             --color-fondo: #FFFFF1;
-            --color-cafe-principal: #757b4d;
-            --sello-hint-color: #757b4d;
+            --color-cafe-principal: #4A1221;
+            --sello-hint-color: #4A1221;
 
             --color-boton-fondo: #FFFFF1;
             --color-boton-texto: #3c3c3b;
-            --color-boton-borde: #757b4d;
-            --color-boton-hover: #fceceb;
+            --color-boton-borde: #4A1221;
+            --color-boton-hover: #F8EDEF;
 
             --music-btn-bg: rgba(255, 255, 255, 0.4);
             --music-btn-hover: rgba(255, 255, 255, 0.75);
-            --music-icon-color: #757B4D;
-            --music-wave-color: #757B4D;
+            --music-icon-color: #4A1221;
+            --music-wave-color: #4A1221;
 
             /* ==========================================
                ## 1. PERSONALIZACIÓN DE LA NOTA BLANCA
