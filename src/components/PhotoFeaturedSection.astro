@@ -4,27 +4,13 @@ import { asset } from '../utils/paths';
 ---
 
 <section class="inv-section photo-featured-section fade-in-on-scroll">
-  <div class="photo-featured-wrapper">
-    <!-- Decorador floral superior -->
-    <div class="photo-corner-floral" aria-hidden="true">
-      <img
-        src={asset("/img/flowers_001.png")}
-        alt=""
-        width="65"
-        height="88"
-        class="photo-flower-accent"
-        loading="lazy"
-      />
-    </div>
-
-    <div class="photo-featured-frame">
-      <img
-        src={asset("/img/DSC_4775.jpg")}
-        alt="Roxana y Ruben"
-        class="photo-featured-img"
-        loading="lazy"
-      />
-    </div>
+  <div class="photo-featured-frame">
+    <img
+      src={asset("/img/DSC_4775.jpg")}
+      alt="Roxana y Ruben"
+      class="photo-featured-img"
+      loading="lazy"
+    />
   </div>
   <p class="photo-featured-quote">
     &ldquo;Junto a ti, el camino es m&aacute;s bonito.&rdquo;
@@ -37,31 +23,10 @@ import { asset } from '../utils/paths';
     padding-bottom: 20px;
   }
 
-  .photo-featured-wrapper {
-    position: relative;
-    max-width: 340px;
-    width: 88%;
-    margin: 0 auto;
-  }
-
-  .photo-corner-floral {
-    position: absolute;
-    top: -10px;
-    right: -8px;
-    z-index: 3;
-    pointer-events: none;
-  }
-
-  .photo-flower-accent {
-    width: 58px;
-    height: auto;
-    filter: drop-shadow(0 3px 8px rgba(74, 18, 33, 0.22));
-    transform: rotate(18deg);
-  }
-
   .photo-featured-frame {
     margin: 0 auto;
-    width: 100%;
+    max-width: 340px;
+    width: 88%;
     border-radius: 170px 170px 24px 24px;
     overflow: hidden;
     box-shadow: 0 10px 28px rgba(74, 18, 33, 0.18);

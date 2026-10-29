@@ -4,28 +4,6 @@ import { asset } from '../utils/paths';
 ---
 
 <section class="inv-section hero-section fade-in-on-scroll" id="heroSection">
-  <!-- Decoradores florales en las esquinas superiores de la tarjeta -->
-  <div class="card-floral-corner corner-top-left" aria-hidden="true">
-    <img
-      src={asset("/img/flowers_001.png")}
-      alt=""
-      width="75"
-      height="100"
-      class="corner-flower-img"
-      loading="eager"
-    />
-  </div>
-  <div class="card-floral-corner corner-top-right" aria-hidden="true">
-    <img
-      src={asset("/img/flowers_002.png")}
-      alt=""
-      width="80"
-      height="107"
-      class="corner-flower-img"
-      loading="eager"
-    />
-  </div>
-
   <!-- Monograma de Iniciales R & R (Texto con tipografía estilizada Bickham Script) -->
   <div class="monogram-wrapper">
     <span class="monogram-text">R &amp; R</span>
@@ -76,44 +54,8 @@ import { asset } from '../utils/paths';
 
 <style>
   .hero-section {
-    position: relative;
-    padding-top: 24px;
+    padding-top: 20px;
     padding-bottom: 20px;
-    overflow: visible;
-  }
-
-  /* Decoradores florales de esquinas de la tarjeta */
-  .card-floral-corner {
-    position: absolute;
-    top: -6px;
-    z-index: 2;
-    pointer-events: none;
-    user-select: none;
-  }
-
-  .card-floral-corner.corner-top-left {
-    left: -10px;
-    transform: rotate(-12deg);
-  }
-
-  .card-floral-corner.corner-top-right {
-    right: -12px;
-    transform: rotate(10deg);
-  }
-
-  .corner-flower-img {
-    width: 68px;
-    height: auto;
-    max-height: 96px;
-    object-fit: contain;
-    filter: drop-shadow(0 4px 10px rgba(74, 18, 33, 0.18));
-    opacity: 0.92;
-  }
-
-  @media (max-width: 380px) {
-    .corner-flower-img {
-      width: 56px;
-    }
   }
 
   .monogram-wrapper {

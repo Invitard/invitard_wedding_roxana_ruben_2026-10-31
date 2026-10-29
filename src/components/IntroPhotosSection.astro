@@ -51,16 +51,6 @@ const slides = [
     tabindex="0"
     aria-label="Deslizar para ver el resto de la invitación"
   >
-    <div class="hero-floral-accent" aria-hidden="true">
-      <img
-        src={asset("/img/flowers_001.png")}
-        alt=""
-        width="52"
-        height="70"
-        class="hero-floral-accent-img"
-        loading="lazy"
-      />
-    </div>
     <span class="scroll-instruction-text">
       Desliza para poder ver el resto de la invitaci&oacute;n
     </span>
@@ -178,34 +168,6 @@ const slides = [
     width: 22px;
     border-radius: 10px;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.45);
-  }
-
-  /* Acento floral sutil en la transición */
-  .hero-floral-accent {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 4px;
-    pointer-events: none;
-  }
-
-  .hero-floral-accent-img {
-    width: 48px;
-    height: auto;
-    max-height: 65px;
-    object-fit: contain;
-    filter: drop-shadow(0 3px 10px rgba(0, 0, 0, 0.45));
-    opacity: 0.95;
-    animation: gentleFloralFloat 3.5s ease-in-out infinite;
-  }
-
-  @keyframes gentleFloralFloat {
-    0%, 100% {
-      transform: translateY(0) scale(1);
-    }
-    50% {
-      transform: translateY(-3px) scale(1.02);
-    }
   }
 
   /* Indicador sutil inferior */

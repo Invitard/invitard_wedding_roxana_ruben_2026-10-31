@@ -87,12 +87,42 @@ import { asset } from '../utils/paths';
       </a>
     </div>
   </div>
+
+  <!-- Acento floral de papelería en la esquina inferior (estilo tarjeta real) -->
+  <div class="card-tucked-floral" aria-hidden="true">
+    <img
+      src={asset("/img/flowers_002.png")}
+      alt=""
+      width="80"
+      height="107"
+      class="tucked-flower-img"
+      loading="lazy"
+    />
+  </div>
 </section>
 
 <style>
   .locations-section {
+    position: relative;
     max-width: 440px;
-    margin: 25px auto;
+    margin: 25px auto 35px auto;
+  }
+
+  .card-tucked-floral {
+    position: absolute;
+    bottom: -24px;
+    left: 14px;
+    z-index: 5;
+    pointer-events: none;
+  }
+
+  .tucked-flower-img {
+    width: 66px;
+    height: auto;
+    max-height: 90px;
+    object-fit: contain;
+    filter: drop-shadow(0 6px 14px rgba(0, 0, 0, 0.38));
+    transform: rotate(-10deg);
   }
 
   .location-item {
