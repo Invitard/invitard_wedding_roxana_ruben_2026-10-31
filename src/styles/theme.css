@@ -40,7 +40,7 @@ html {
   -webkit-text-size-adjust: 100%;
 }
 
-/* FONDO GENERAL: TRANSICIÓN SUAVE CONTINUA DEL BLANCO AL VERDE CLARO SECUNDARIO */
+/* FONDO GENERAL: TRANSICIÓN SUAVE CONTINUA DEL BLANCO A TONO #4A1221 MÁS CLARO */
 body {
   margin: 0;
   padding: 0;
@@ -49,18 +49,18 @@ body {
     180deg,
     #FFFFFF 0px,
     #FFFFF1 50vh,
-    #FAFBF6 70vh,
-    #F3F6EC 85vh,
-    #E8EDE0 94vh,
-    #D9E2CE 100vh,
-    #CAD6BC 112vh,
-    #BAC8AA 130vh,
-    #A9B997 160vh,
-    #9BAA86 215vh,
-    #8E9D78 280vh,
-    #98A681 350vh,
-    #A7B591 430vh,
-    #B5C2A0 100%
+    #FAF2F4 70vh,
+    #F4E2E6 85vh,
+    #EACCD3 94vh,
+    #DEB4BE 100vh,
+    #D09CA8 112vh,
+    #C18392 130vh,
+    #B06D7D 160vh,
+    #9E5667 215vh,
+    #8C4052 280vh,
+    #9E5667 350vh,
+    #B26E7E 430vh,
+    #C58796 100%
   );
   background-attachment: scroll;
   color: var(--color-text-main);
@@ -77,18 +77,18 @@ body {
     180deg,
     #FFFFFF 0px,
     #FFFFF1 50vh,
-    #FAFBF6 70vh,
-    #F3F6EC 85vh,
-    #E8EDE0 94vh,
-    #D9E2CE 100vh,
-    #CAD6BC 112vh,
-    #BAC8AA 130vh,
-    #A9B997 160vh,
-    #9BAA86 215vh,
-    #8E9D78 280vh,
-    #98A681 350vh,
-    #A7B591 430vh,
-    #B5C2A0 100%
+    #FAF2F4 70vh,
+    #F4E2E6 85vh,
+    #EACCD3 94vh,
+    #DEB4BE 100vh,
+    #D09CA8 112vh,
+    #C18392 130vh,
+    #B06D7D 160vh,
+    #9E5667 215vh,
+    #8C4052 280vh,
+    #9E5667 350vh,
+    #B26E7E 430vh,
+    #C58796 100%
   );
   background-attachment: scroll;
 }
