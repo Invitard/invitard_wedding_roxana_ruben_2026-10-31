@@ -141,27 +141,29 @@ body {
   padding-bottom: 38px;
 }
 
-/* TIRAS / RIBBONS DECORATIVAS ENTRE SECCIONES */
+/* TIRAS FLORALES DECORATIVAS ENTRE SECCIONES */
 .ribbon-deco {
   width: 100%;
-  height: 20px;
-  background-image: url('/invitard_wedding_roxana_ruben_2026-10-31/assets/wp-content/uploads/2026/07/MICHELLE-MARCO-DECO.webp');
-  background-repeat: repeat-x;
+  height: 28px;
+  background-image: url('/invitard_wedding_roxana_ruben_2026-10-31/img/flowers_001.png');
+  background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
-  margin: 22px auto;
-  opacity: 0.95;
+  margin: 18px auto;
+  opacity: 0.9;
+  filter: drop-shadow(0 2px 5px rgba(74, 18, 33, 0.12));
 }
 
 .ribbon-dd {
   width: 100%;
-  height: 20px;
-  background-image: url('/invitard_wedding_roxana_ruben_2026-10-31/assets/wp-content/uploads/2026/07/MICHELLE-MARCO-dd.webp');
-  background-repeat: repeat-x;
+  height: 28px;
+  background-image: url('/invitard_wedding_roxana_ruben_2026-10-31/img/flowers_002.png');
+  background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
-  margin: 22px auto;
-  opacity: 0.95;
+  margin: 18px auto;
+  opacity: 0.9;
+  filter: drop-shadow(0 2px 5px rgba(74, 18, 33, 0.12));
 }
 
 /* Dividers */
