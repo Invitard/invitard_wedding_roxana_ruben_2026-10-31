@@ -40,7 +40,7 @@ html {
   -webkit-text-size-adjust: 100%;
 }
 
-/* FONDO GENERAL: TRANSICIÓN SUAVE CONTINUA DEL BLANCO A TONO #4A1221 MÁS CLARO */
+/* FONDO GENERAL: TRANSICIÓN SUAVE CONTINUA DEL BLANCO AL COLOR PRINCIPAL #4A1221 */
 body {
   margin: 0;
   padding: 0;
@@ -48,19 +48,13 @@ body {
   background: linear-gradient(
     180deg,
     #FFFFFF 0px,
-    #FFFFF1 50vh,
-    #FAF2F4 70vh,
-    #F4E2E6 85vh,
-    #EACCD3 94vh,
-    #DEB4BE 100vh,
-    #D09CA8 112vh,
-    #C18392 130vh,
-    #B06D7D 160vh,
-    #9E5667 215vh,
-    #8C4052 280vh,
-    #9E5667 350vh,
-    #B26E7E 430vh,
-    #C58796 100%
+    #FFFFF1 45vh,
+    #F6E5E9 65vh,
+    #E8BAC4 80vh,
+    #CB7E90 90vh,
+    #9C3E55 96vh,
+    #4A1221 100vh,
+    #4A1221 100%
   );
   background-attachment: scroll;
   color: var(--color-text-main);
@@ -76,19 +70,13 @@ body {
   background: linear-gradient(
     180deg,
     #FFFFFF 0px,
-    #FFFFF1 50vh,
-    #FAF2F4 70vh,
-    #F4E2E6 85vh,
-    #EACCD3 94vh,
-    #DEB4BE 100vh,
-    #D09CA8 112vh,
-    #C18392 130vh,
-    #B06D7D 160vh,
-    #9E5667 215vh,
-    #8C4052 280vh,
-    #9E5667 350vh,
-    #B26E7E 430vh,
-    #C58796 100%
+    #FFFFF1 45vh,
+    #F6E5E9 65vh,
+    #E8BAC4 80vh,
+    #CB7E90 90vh,
+    #9C3E55 96vh,
+    #4A1221 100vh,
+    #4A1221 100%
   );
   background-attachment: scroll;
 }
