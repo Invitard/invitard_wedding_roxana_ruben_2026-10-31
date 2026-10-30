@@ -51,7 +51,7 @@ import { asset } from '../utils/paths';
 
     <!-- Firma de los Novios -->
     <div class="rsvp-signature">
-      Roxana &amp; Ruben
+      Roxana <span class="couple-amp">&amp;</span> Ruben
     </div>
   </div>
 </section>
@@ -63,7 +63,7 @@ import { asset } from '../utils/paths';
 
     <div class="modal-header">
       <h3 id="modalRsvpTitle" class="modal-title">Confirmar Asistencia</h3>
-      <span class="modal-subtitle">Boda Roxana &amp; Ruben</span>
+      <span class="modal-subtitle">Boda Roxana <span class="couple-amp">&amp;</span> Ruben</span>
     </div>
 
     <form id="rsvpForm" class="modal-form" onsubmit="return false;">
@@ -427,7 +427,7 @@ import { asset } from '../utils/paths';
     var compInput = document.getElementById('rsvpInputCompanion');
     var form = document.getElementById('rsvpForm');
 
-    // Número destino de WhatsApp
+    // Número destino de WhatsApp (según DATA.md: +51 994 816 120)
     var WA_PHONE = '51994816120';
 
     // Rellenar automáticamente con parámetro ?invitados= si existe
@@ -514,12 +514,12 @@ import { asset } from '../utils/paths';
           return;
         }
 
-        var mensaje = '';
-        if (acompanante) {
-          mensaje = '¡Hola! Confirmamos nuestra asistencia a la boda de Roxana y Ruben. Estaremos presentes: ' + nombre + ' y ' + acompanante + '. ¡Allí estaremos!';
-        } else {
-          mensaje = '¡Hola! Confirmo mi asistencia a la boda de Roxana y Ruben. Nombre: ' + nombre + '. ¡Allí estaré!';
-        }
+        var cantidad = acompanante ? 2 : 1;
+        var nombresAsistentes = acompanante ? (nombre + ' y ' + acompanante) : nombre;
+
+        var mensaje = 'Buenos días Karol, confirmamos la asistencia para la boda de Roxana y Ruben en la fecha Sábado, 02 de Enero de 2027.\n\n' +
+          'Cantidad de asistentes: ' + cantidad + '\n' +
+          'Nombre de los asistentes: ' + nombresAsistentes;
 
         var waUrl = 'https://api.whatsapp.com/send?phone=' + WA_PHONE + '&text=' + encodeURIComponent(mensaje);
 

@@ -1,28 +1,51 @@
 ---
-// PhotoDuoSection.astro - Dúo de Fotografías Románticas
+// PhotoDuoSection.astro - Carrusel Horizontal y Frase Romántica
 import { asset } from '../utils/paths';
+
+const slides = [
+  { src: asset("/img/DSC_4318.jpg"), alt: "Roxana y Ruben - Recuerdo 1" },
+  { src: asset("/img/DSC_4677.jpg"), alt: "Roxana y Ruben - Recuerdo 2" },
+  { src: asset("/img/DSC_4681.jpg"), alt: "Roxana y Ruben - Recuerdo 3" },
+];
 ---
 
 <section class="inv-section photo-duo-section fade-in-on-scroll">
-  <div class="photo-duo-grid">
-    <div class="photo-card photo-card-left">
-      <img
-        src={asset("/img/DSC_4630.jpg")}
-        alt="Roxana y Ruben - Miradas de amor"
-        class="duo-img"
-        loading="lazy"
-      />
+  <!-- Carrusel de Fotografías Horizontales -->
+  <div class="duo-carousel-container">
+    <button type="button" class="duo-carousel-btn prev-btn" id="duoPrevBtn" aria-label="Foto anterior">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="15 18 9 12 15 6"></polyline>
+      </svg>
+    </button>
+
+    <div class="duo-carousel-track" id="duoTrack">
+      {slides.map((item, index) => (
+        <div class="duo-carousel-slide" data-index={index}>
+          <img
+            src={item.src}
+            alt={item.alt}
+            class="duo-horizontal-img"
+            loading="lazy"
+          />
+        </div>
+      ))}
     </div>
-    <div class="photo-card photo-card-right">
-      <img
-        src={asset("/img/DSC_4646.jpg")}
-        alt="Roxana y Ruben - Risas compartidas"
-        class="duo-img"
-        loading="lazy"
-      />
-    </div>
+
+    <button type="button" class="duo-carousel-btn next-btn" id="duoNextBtn" aria-label="Siguiente foto">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="9 18 15 12 9 6"></polyline>
+      </svg>
+    </button>
   </div>
 
+  <!-- Indicadores de puntos (Dots) -->
+  <div class="duo-carousel-dots" id="duoDots">
+    {slides.map((_, index) => (
+      <span class={`duo-dot ${index === 0 ? 'active' : ''}`} data-dot={index}></span>
+    ))}
+  </div>
+
+  <!-- Frase Romántica -->
   <p class="photo-duo-quote">
     &ldquo;Lo que m&aacute;s ilusi&oacute;n me hace del futuro es vivirlo contigo.&rdquo;
   </p>
@@ -34,41 +57,106 @@ import { asset } from '../utils/paths';
     padding-bottom: 20px;
   }
 
-  .photo-duo-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 14px;
-    max-width: 420px;
+  .duo-carousel-container {
+    position: relative;
+    max-width: 380px;
     margin: 0 auto;
     padding: 0 10px;
   }
 
-  .photo-card {
-    border-radius: 18px;
+  .duo-carousel-track {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    gap: 14px;
+    border-radius: 20px;
+  }
+
+  .duo-carousel-track::-webkit-scrollbar {
+    display: none;
+  }
+
+  .duo-carousel-slide {
+    flex: 0 0 100%;
+    scroll-snap-align: center;
+    border-radius: 20px;
     overflow: hidden;
-    box-shadow: 0 6px 20px rgba(74, 18, 33, 0.15);
-    border: 2px solid rgba(255, 255, 255, 0.85);
+    box-shadow: 0 8px 24px rgba(74, 18, 33, 0.16);
+    border: 3px solid rgba(255, 255, 255, 0.92);
     background: #f7f4ee;
   }
 
-  .photo-card-left {
-    border-radius: 60px 18px 18px 18px;
-  }
-
-  .photo-card-right {
-    border-radius: 18px 60px 18px 18px;
-  }
-
-  .duo-img {
+  .duo-horizontal-img {
     width: 100%;
-    height: 220px;
+    aspect-ratio: 16 / 10;
+    max-height: 250px;
     object-fit: cover;
+    object-position: center;
     display: block;
-    transition: transform 0.5s ease;
+    transition: transform 0.4s ease;
   }
 
-  .photo-card:hover .duo-img {
-    transform: scale(1.04);
+  .duo-carousel-slide:hover .duo-horizontal-img {
+    transform: scale(1.03);
+  }
+
+  .duo-carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.88);
+    border: 1.5px solid var(--color-primary);
+    color: var(--color-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 5;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    transition: all 0.2s ease;
+  }
+
+  .duo-carousel-btn:hover {
+    background: var(--color-primary);
+    color: #ffffff;
+  }
+
+  .prev-btn {
+    left: 18px;
+  }
+
+  .next-btn {
+    right: 18px;
+  }
+
+  .duo-carousel-dots {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+    margin-top: 10px;
+  }
+
+  .duo-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background-color: rgba(74, 18, 33, 0.25);
+    transition: all 0.3s ease;
+    cursor: pointer;
+  }
+
+  .duo-dot.active {
+    background-color: var(--color-primary);
+    transform: scale(1.2);
+    width: 16px;
+    border-radius: 6px;
   }
 
   .photo-duo-quote {
@@ -77,14 +165,119 @@ import { asset } from '../utils/paths';
     font-size: 15.5px;
     color: var(--color-primary-dark);
     margin: 18px auto 0 auto;
-    max-width: 320px;
+    max-width: 330px;
     line-height: 1.55;
+    text-align: center;
   }
 
   @media (max-width: 360px) {
-    .duo-img {
-      height: 180px;
+    .duo-horizontal-img {
+      max-height: 210px;
     }
   }
 </style>
 
+<script is:inline>
+  (function() {
+    var track = document.getElementById('duoTrack');
+    var prevBtn = document.getElementById('duoPrevBtn');
+    var nextBtn = document.getElementById('duoNextBtn');
+    var dots = document.querySelectorAll('#duoDots .duo-dot');
+    var container = track ? track.closest('.duo-carousel-container') : null;
+
+    if (!track) return;
+
+    var slides = track.querySelectorAll('.duo-carousel-slide');
+    var totalSlides = slides.length;
+    var autoPlayTimer = null;
+
+    function getSlideWidth() {
+      var slide = track.querySelector('.duo-carousel-slide');
+      return slide ? slide.offsetWidth + 14 : 320;
+    }
+
+    function goToSlide(index) {
+      var slideW = getSlideWidth();
+      var targetIndex = (index + totalSlides) % totalSlides;
+      track.scrollTo({ left: targetIndex * slideW, behavior: 'smooth' });
+    }
+
+    function nextSlide() {
+      var slideW = getSlideWidth();
+      var activeIndex = Math.round(track.scrollLeft / slideW);
+      var nextIndex = (activeIndex + 1) % totalSlides;
+      track.scrollTo({ left: nextIndex * slideW, behavior: 'smooth' });
+    }
+
+    function prevSlide() {
+      var slideW = getSlideWidth();
+      var activeIndex = Math.round(track.scrollLeft / slideW);
+      var targetIndex = (activeIndex - 1 + totalSlides) % totalSlides;
+      track.scrollTo({ left: targetIndex * slideW, behavior: 'smooth' });
+    }
+
+    function startAutoPlay() {
+      stopAutoPlay();
+      autoPlayTimer = setInterval(nextSlide, 5000);
+    }
+
+    function stopAutoPlay() {
+      if (autoPlayTimer) {
+        clearInterval(autoPlayTimer);
+        autoPlayTimer = null;
+      }
+    }
+
+    startAutoPlay();
+
+    if (prevBtn) {
+      prevBtn.addEventListener('click', function() {
+        prevSlide();
+        startAutoPlay();
+      });
+    }
+
+    if (nextBtn) {
+      nextBtn.addEventListener('click', function() {
+        nextSlide();
+        startAutoPlay();
+      });
+    }
+
+    track.addEventListener('scroll', function() {
+      var slideW = getSlideWidth();
+      var activeIndex = Math.round(track.scrollLeft / slideW);
+      if (activeIndex < 0) activeIndex = 0;
+      if (activeIndex >= totalSlides) activeIndex = totalSlides - 1;
+
+      dots.forEach(function(dot, idx) {
+        if (idx === activeIndex) {
+          dot.classList.add('active');
+        } else {
+          dot.classList.remove('active');
+        }
+      });
+    }, { passive: true });
+
+    dots.forEach(function(dot) {
+      dot.addEventListener('click', function() {
+        var idx = parseInt(dot.getAttribute('data-dot') || '0', 10);
+        goToSlide(idx);
+        startAutoPlay();
+      });
+    });
+
+    track.addEventListener('touchstart', function() {
+      stopAutoPlay();
+    }, { passive: true });
+
+    track.addEventListener('touchend', function() {
+      startAutoPlay();
+    }, { passive: true });
+
+    if (container) {
+      container.addEventListener('mouseenter', stopAutoPlay);
+      container.addEventListener('mouseleave', startAutoPlay);
+    }
+  })();
+</script>

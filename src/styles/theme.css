@@ -141,29 +141,27 @@ body {
   padding-bottom: 38px;
 }
 
-/* SEPARADORES SUTILES ENTRE SECCIONES */
-.ribbon-deco,
-.ribbon-dd {
-  width: 70%;
-  max-width: 220px;
-  height: 1px;
+/* TIRAS / RIBBONS DECORATIVAS ENTRE SECCIONES */
+.ribbon-deco {
+  width: 100%;
+  height: 20px;
+  background-image: url('/invitard_wedding_roxana_ruben_2026-10-31/assets/wp-content/uploads/2026/07/MICHELLE-MARCO-DECO.webp');
+  background-repeat: repeat-x;
+  background-size: contain;
+  background-position: center;
   margin: 22px auto;
-  background: linear-gradient(90deg, transparent, rgba(74, 18, 33, 0.22), transparent);
-  position: relative;
+  opacity: 0.95;
 }
 
-.ribbon-deco::after,
-.ribbon-dd::after {
-  content: "";
-  position: absolute;
-  top: -2.5px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 5px;
-  height: 5px;
-  border-radius: 50%;
-  background-color: var(--color-primary);
-  opacity: 0.6;
+.ribbon-dd {
+  width: 100%;
+  height: 20px;
+  background-image: url('/invitard_wedding_roxana_ruben_2026-10-31/assets/wp-content/uploads/2026/07/MICHELLE-MARCO-dd.webp');
+  background-repeat: repeat-x;
+  background-size: contain;
+  background-position: center;
+  margin: 22px auto;
+  opacity: 0.95;
 }
 
 /* Dividers */
@@ -197,6 +195,16 @@ body {
 }
 
 /* Typography Helpers */
+.couple-amp {
+  font-family: var(--font-heading) !important;
+  font-size: 0.65em;
+  font-weight: 500;
+  margin: 0 6px;
+  vertical-align: middle;
+  display: inline-block;
+  line-height: 1;
+}
+
 .title-script {
   font-family: var(--font-script);
   font-weight: normal;

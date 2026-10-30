@@ -4,9 +4,9 @@ import { asset } from '../utils/paths';
 ---
 
 <section class="inv-section hero-section fade-in-on-scroll" id="heroSection">
-  <!-- Monograma de Iniciales R & R (Texto con tipografía estilizada Bickham Script) -->
+  <!-- Monograma de Iniciales R & R -->
   <div class="monogram-wrapper">
-    <span class="monogram-text">R &amp; R</span>
+    <span class="monogram-text">R <span class="monogram-amp">&amp;</span> R</span>
   </div>
 
   <!-- Adorno Floral flowers_001.png -->
@@ -22,8 +22,8 @@ import { asset } from '../utils/paths';
 
   <!-- Versículo Bíblico -->
   <blockquote class="verse-text">
-    &ldquo;Tres cosas durar&aacute;n para siempre: la fe, la esperanza y el amor; y la mayor de las tres es el amor.&rdquo;
-    <footer class="verse-reference">1 Corintios 13:13</footer>
+    &ldquo;Uno solo puede ser vencido, pero dos podrán resistir. Y además, la cuerda de tres hilos no se rompe fácilmente.&rdquo;
+    <footer class="verse-reference">Eclesiastés 4:12</footer>
   </blockquote>
 
   <!-- Separador dorado -->
@@ -38,14 +38,14 @@ import { asset } from '../utils/paths';
     <!-- Fotografía Principal de los Novios -->
     <div class="hero-photo-frame">
       <img
-        src={asset("/img/DSC_4538.jpg")}
+        src={asset("/img/JC7_0468.jpg")}
         alt="Roxana y Ruben"
         class="hero-photo"
         loading="eager"
       />
     </div>
 
-    <h1 class="main-couple-names">Roxana &amp; Ruben</h1>
+    <h1 class="main-couple-names">Roxana <span class="couple-amp">&amp;</span> Ruben</h1>
     <p class="couple-dedication">
       Hoy comenzamos juntos el camino m&aacute;s importante de nuestras vidas.
     </p>
@@ -71,13 +71,24 @@ import { asset } from '../utils/paths';
     font-size: 84px;
     line-height: 1.15;
     color: var(--color-primary);
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     padding: 10px 24px 15px 24px;
     letter-spacing: 4px;
     font-weight: normal;
     user-select: none;
     -webkit-user-select: none;
     text-shadow: 0 2px 6px rgba(74, 18, 33, 0.2);
+  }
+
+  .monogram-amp {
+    font-family: var(--font-heading); /* 'Cormorant Unicase', serif (fuente del sobre) */
+    font-size: 0.6em;
+    font-weight: 500;
+    margin: 0 6px;
+    line-height: 1;
+    display: inline-block;
   }
 
   .ornament-wrapper {
