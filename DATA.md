@@ -26,7 +26,7 @@ Elegante - agradecemos evitar prendas de tonos claros como blanco, ivory, beige,
 Peticiones adicionales: 
 -cuenta regresiva
 -botones de redireccion de iglesia y el local a google maps.
--botón de confirmacion de asistencia al numero +51 994 816 120 
+-botón de confirmacion de asistencia al numero +51 950 375 573 
 Datos bancarios para que los invitados hagan donaciones: 
 -CTA Interbank: 898 3378950904
 (CCI) Interbank: 00389801337895090448

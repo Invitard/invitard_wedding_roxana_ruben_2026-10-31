@@ -7,7 +7,7 @@
     <span class="guest-badge">INVITACI&Oacute;N</span>
     <h3 id="nombreInvitado" class="guest-name">Familia y Amigos</h3>
     <p id="textoReservado" class="guest-reserved-text">Hemos reservado</p>
-    <div id="pasesInvitado" class="guest-passes">02 pases</div>
+    <div id="pasesInvitado" class="guest-passes">01 pases</div>
     <span class="guest-note">especialmente para ti</span>
   </div>
 </section>
@@ -89,7 +89,7 @@
 
       if (!invitado && !pases) {
         invitado = 'Familia_y_Amigos';
-        pases = '02';
+        pases = '01';
       }
 
       var elNombre = document.getElementById('nombreInvitado');
@@ -102,7 +102,7 @@
 
       if (pases && elPases) {
         var num = parseInt(pases, 10);
-        var label = isNaN(num) ? pases : (num === 1 ? num + ' pase' : (num < 10 ? '0' + num : num) + ' pases');
+        var label = isNaN(num) ? pases : ((num < 10 ? '0' + num : num) + ' pases');
         elPases.textContent = label;
       }
     } catch (e) {
